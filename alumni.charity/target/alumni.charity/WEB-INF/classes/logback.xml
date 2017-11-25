@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Just used while running in process while developing -->
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M\(%line\) - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APPLOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>E:/andri/Projects/SchoolMgmt/logs/school-mgmt.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>E:/andri/Projects/SchoolMgmt/logs/school-mgmt.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+	        <maxFileSize>50MB</maxFileSize>
+	     	</timeBasedFileNamingAndTriggeringPolicy>
+	        <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                %d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M\(%line\) - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="ERROR"/>
+    <logger name="org.apache.tiles" level="ERROR"/>
+    
+     <logger name="com.school" level="DEBUG">
+       	<appender-ref ref="APPLOGFILE"/>
+       	<appender-ref ref="STDOUT"/>
+     </logger>
+
+</configuration>
+
