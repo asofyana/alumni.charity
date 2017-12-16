@@ -40,4 +40,21 @@ public class CommonUtil {
 		
 	}
 
+	public static void logInternalError(org.slf4j.Logger logger,Exception e)
+	{
+		StackTraceElement[] arr = e.getStackTrace();
+	
+		String message = e.getMessage();
+		String desc = "";
+		
+		for(StackTraceElement ste:arr)
+		{
+			desc = desc + "Class : "+ste.getClassName()+", line : "+ste.getLineNumber()+"\r\n";
+		}
+		
+		Object[] arrO = {"InternalError",message,desc};
+		
+		logger.error("InternalError",arrO);
+	}
+
 }

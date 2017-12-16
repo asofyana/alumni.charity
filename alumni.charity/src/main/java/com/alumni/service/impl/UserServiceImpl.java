@@ -1,4 +1,4 @@
-package com.alumni.service.util;
+package com.alumni.service.impl;
 
 import java.util.Date;
 import java.util.List;
