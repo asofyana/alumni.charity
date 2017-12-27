@@ -7,6 +7,35 @@ public class Constants {
 	
 	public static String PAYMENT_TYPE_MEMBER_MONTHLY = "MEMBER_MONTHLY";
 	
-	public static String PAYMENT_STATUS_NEW = "NEW";
+	public enum PaymentStatus {
+		NEW("NEW"),
+		VERIFIED("VERIFIED");
+		
+		private String status;
+		
+		PaymentStatus(String status) {
+			this.status = status;
+		}
+
+	    @Override
+	    public String toString() {
+	    	return status;
+	    }
+	}
+	
+	public enum PaymentType {
+		MEMBER_MONTHLY("MEMBER_MONTHLY");
+		
+		private String type;
+		PaymentType(String type) {
+			this.type = type;
+		}
+
+		@Override
+	    public String toString() {
+	    	return type;
+	    }
+
+	}
 
 }

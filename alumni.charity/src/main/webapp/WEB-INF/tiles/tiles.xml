@@ -18,4 +18,14 @@
 		<put-attribute name="content" value="/WEB-INF/pages/upload-receipt.jsp" />
 	</definition>
 
+	<definition name="PaymentVerification" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/payment-verification.jsp" />
+	</definition>
+
+	<definition name="PaymentDetail" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/payment-detail.jsp" />
+	</definition>
+
 </tiles-definitions>

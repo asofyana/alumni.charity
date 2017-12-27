@@ -22,11 +22,11 @@ method="post" modelAttribute="uploadReceiptBean">
       </div>
     </div>
 
-    <div class="box-footer">
+    <div class="box-body">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 
-    <div class="box-footer">
+    <div class="box-body">
     	${message}
     </div>
 		

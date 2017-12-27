@@ -24,6 +24,7 @@ public class Payment {
 	private String createdBy;
 	private Date updatedDate;
 	private String updatedBy;
+	private double amount;
 	
 	@Id
 	@Column(name="ID")
@@ -106,5 +107,14 @@ public class Payment {
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
+
+	@Column(name="AMOUNT")
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
 	
 }

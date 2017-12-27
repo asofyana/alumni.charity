@@ -18,6 +18,11 @@ public class MemberContribution {
 	Payment payment;
 	User user;
 	Date month;
+	private double amount;
+	private Date createdDate;
+	private String createdBy;
+	private Date updatedDate;
+	private String updatedBy;
 
 	@Id
 	@Column(name="ID")
@@ -53,6 +58,45 @@ public class MemberContribution {
 	public void setMonth(Date month) {
 		this.month = month;
 	}
-	
+
+	@Column(name="AMOUNT")
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	@Column(name="CREATED_DATE")
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	@Column(name="CREATED_BY")
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	@Column(name="UPDATED_DATE")
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	@Column(name="UPDATED_BY")
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
 	
 }

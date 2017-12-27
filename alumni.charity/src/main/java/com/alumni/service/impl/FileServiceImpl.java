@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
@@ -42,7 +43,7 @@ public class FileServiceImpl implements FileService {
 		
 	}
 
-	public static byte[] resize(byte[] img, String fileType, int imageWidth) {
+	public byte[] resize(byte[] img, String fileType, int imageWidth) {
 		byte[] imageBytes = null;
 		ByteArrayOutputStream outputStream =  null;
 		try {
@@ -84,6 +85,15 @@ public class FileServiceImpl implements FileService {
 			}
 		}
 		return imageBytes;
+	}
+
+	@Override
+	public byte[] readFile(String fileName) throws Exception {
+		String fileExt = fileName.substring(fileName.length() - 3);
+		BufferedImage image = ImageIO.read(new File(fileLocation + "/" + fileName));
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ImageIO.write(image, fileExt, baos);
+		return baos.toByteArray();
 	}
 
 	

@@ -39,8 +39,6 @@ public class MemberController extends BaseController {
 			@ModelAttribute("uploadReceiptBean") UploadReceiptBean uploadReceiptBean,
 			BindingResult result) {
 		
-		logger.info("upload-receipt - start");
-
 		ModelAndView modelAndView = null;
 		try {
 			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
@@ -54,8 +52,6 @@ public class MemberController extends BaseController {
 			CommonUtil.logInternalError(logger, e);
 			modelAndView = new ModelAndView("redirect:/login");
 		}
-
-		logger.info("upload-receipt - end");
 
 		return modelAndView;
 	}
@@ -72,10 +68,7 @@ public class MemberController extends BaseController {
 			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
 			modelAndView = createModelAndViewInstance(userBean, ROLE, "UploadReceipt");
 			
-			System.out.println("amount: " + uploadReceiptBean.getAmount());
-			System.out.println("file: " + uploadReceiptBean.getMultipartFile().getOriginalFilename());
-			
-			paymentService.savePayment(userBean.getUser(), uploadReceiptBean.getMultipartFile());
+			paymentService.savePayment(userBean.getUser(), Double.parseDouble(uploadReceiptBean.getAmount()), uploadReceiptBean.getMultipartFile());
 			
 			modelAndView.addObject("message", "Your file is uploaded successfully");
 			

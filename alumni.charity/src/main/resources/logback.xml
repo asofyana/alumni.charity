@@ -12,9 +12,9 @@
     </appender>
 
     <appender name="APPLOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>E:/andri/Projects/SchoolMgmt/logs/school-mgmt.log</file>
+        <file>E:/andri/Projects/SMP1/logs/school-mgmt.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>E:/andri/Projects/SchoolMgmt/logs/school-mgmt.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>E:/andri/Projects/SMP1/logs/school-mgmt.%d{yyyy-MM-dd}.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 	        <maxFileSize>50MB</maxFileSize>
 	     	</timeBasedFileNamingAndTriggeringPolicy>
@@ -30,7 +30,7 @@
     <logger name="org.springframework" level="ERROR"/>
     <logger name="org.apache.tiles" level="ERROR"/>
     
-     <logger name="com.school" level="DEBUG">
+     <logger name="com.alumni" level="DEBUG">
        	<appender-ref ref="APPLOGFILE"/>
        	<appender-ref ref="STDOUT"/>
      </logger>
