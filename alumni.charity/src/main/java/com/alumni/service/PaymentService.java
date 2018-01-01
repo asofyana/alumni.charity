@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alumni.entity.MemberContribution;
 import com.alumni.entity.Payment;
 import com.alumni.entity.User;
 import com.alumni.exception.BusinessProcessException;
@@ -13,4 +14,5 @@ public interface PaymentService {
 	public List<Payment> getPaymentByStatus(String status);
 	public Payment getPaymentById(int id);
 	public void verifyPayment(Payment payment, User user) throws Exception;
+	public List<MemberContribution> getContributionListByUserId(int userId);
 }

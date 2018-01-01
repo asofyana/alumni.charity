@@ -78,5 +78,15 @@ public class PaymentDaoImpl extends BaseDao implements PaymentDao {
 		updateObject(memberContribution);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MemberContribution> getContributionListByUserId(int userId) {
+
+		Map<String, Object> criteria = new HashMap<String, Object>();
+		criteria.put("user.id", userId);
+		
+		return (List<MemberContribution>) (List<?>) getObjectsByCriteria(MemberContribution.class, criteria);
+	}
+
 
 }

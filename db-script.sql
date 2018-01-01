@@ -37,6 +37,7 @@ id INT NOT NULL AUTO_INCREMENT key,
 user_id int,
 name varchar(50),
 payment_type varchar(20),
+amount double,
 file_name varchar(20),
 status varchar(20),
 created_date datetime,
@@ -49,12 +50,43 @@ create table t_member_contribution(
 id INT NOT NULL AUTO_INCREMENT key,
 payment_id int,
 user_id int,
-month datetime
+month datetime,
+amount double,
+created_date datetime,
+created_by varchar(50),
+updated_date datetime,
+updated_by varchar(50)
 );
+
+create table t_payment_request(
+id INT NOT NULL AUTO_INCREMENT key,
+title varchar(50),
+description varchar(255),
+type varchar(20),
+amount double,
+status varchar(20),
+approval_count int,
+approver_list varchar(50),
+created_date datetime,
+created_by varchar(50),
+updated_date datetime,
+updated_by varchar(50)
+);
+
+create table t_payment_type(
+payment_type varchar(20),
+flow_type  varchar(10)
+)
+
 
 ----------
 insert into t_role(id, role_code, role_desc) values(1,'ADMIN','Administrator');
 insert into t_role(id, role_code, role_desc) values(2,'MEMBER','Member');
 insert into t_role(id, role_code, role_desc) values(3,'TREASURY','Treasury');
+insert into t_role(id, role_code, role_desc) values(4,'APPROVER','Approver');
+
+insert into t_payment_type(payment_type, flow_type) values ('MEMBER_MONTHLY', 'CREDIT');
+insert into t_payment_type(payment_type, flow_type) values ('CHARITY_PAYMENT', 'DEBET');
+
 
 insert into t_user(email,password,full_name) values('asofyana@yahoo.com','password*1','Andri Sofyana')

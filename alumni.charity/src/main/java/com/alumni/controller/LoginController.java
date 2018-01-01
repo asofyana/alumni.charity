@@ -48,9 +48,6 @@ public class LoginController {
 
 		ModelAndView modelAndView = new ModelAndView();
 		
-		logger.debug("email: " + loginForm.getEmail());
-		logger.debug("password: " + loginForm.getPassword());
-		
 		request.getSession().invalidate();
 		
 		UserBean userBean = userService.login(loginForm.getEmail(), loginForm.getPassword());

@@ -44,7 +44,6 @@ public class CommonUtil {
 	{
 		StackTraceElement[] arr = e.getStackTrace();
 	
-		String message = e.getMessage();
 		String desc = "";
 		
 		for(StackTraceElement ste:arr)
@@ -52,9 +51,7 @@ public class CommonUtil {
 			desc = desc + "Class : "+ste.getClassName()+", line : "+ste.getLineNumber()+"\r\n";
 		}
 		
-		Object[] arrO = {"InternalError",message,desc};
-		
-		logger.error("InternalError",arrO);
+		logger.error(desc);
 	}
 
 }

@@ -128,4 +128,9 @@ public class PaymentServiceImpl implements PaymentService {
 			}
 		}
 	}
+	
+	@Override
+	public List<MemberContribution> getContributionListByUserId(int userId) {
+		return paymentDao.getContributionListByUserId(userId);
+	}
 }

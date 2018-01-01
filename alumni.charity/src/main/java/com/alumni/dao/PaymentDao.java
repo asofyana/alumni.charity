@@ -13,4 +13,5 @@ public interface PaymentDao {
 	public MemberContribution getLastContributionMonth(int userId);
 	public void saveMemberContribution(MemberContribution memberContribution);
 	public void updateMemberContribution(MemberContribution memberContribution);
+	public List<MemberContribution> getContributionListByUserId(int userId);
 }

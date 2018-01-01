@@ -17,9 +17,6 @@ method="post">
 	<input type="hidden" name="id" value="${payment.id}">
 
 
-<div class="col-md-6">
-<div class="box box-solid">
-<div class="box-body">
 	<dl class="dl-horizontal">
 		<dt>Date</dt>
 		<dd>${payment.createdDate}</dd>
@@ -30,17 +27,16 @@ method="post">
 		<dt>Payment Type</dt>
 		<dd>${payment.paymentType}</dd>
 	</dl>
-</div>
-</div>
-</div>
 
-    <div class="box-body" style="width:300px;">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Transfer Proof</label>
-        <img title="" 
-			src="data:image/png;base64,${base64Img}" />
-      </div>
-    </div>
+	<c:if test="${not empty base64Img}">
+	    <div class="box-body" style="width:300px;">
+	      <div class="form-group">
+	        <label for="exampleInputEmail1">Transfer Proof</label>
+	        <img title="" 
+				src="data:image/png;base64,${base64Img}" />
+	      </div>
+	    </div>
+    </c:if>
 
 	<c:if test="${empty message}">
 	    <div class="box-body">

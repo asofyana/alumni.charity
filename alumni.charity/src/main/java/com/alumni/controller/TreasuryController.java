@@ -53,10 +53,11 @@ public class TreasuryController extends BaseController {
 			CommonUtil.logInternalError(logger, e);
 			modelAndView = new ModelAndView("redirect:/login");
 		} catch (NotAuthorizedException e) {
-			modelAndView = new ModelAndView("redirect:/login");
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("NotAuthorized");
 		} catch (Exception e) {
 			CommonUtil.logInternalError(logger, e);
-			modelAndView = new ModelAndView("redirect:/login");
+			modelAndView = new ModelAndView("Error500");
 		}
 
 		return modelAndView;
@@ -76,19 +77,22 @@ public class TreasuryController extends BaseController {
 			Payment payment = paymentService.getPaymentById(Integer.parseInt(paymentId));
 			modelAndView.addObject("payment", payment);
 			
-			byte[] img = fileService.readFile(payment.getFileName());
-			String enc = DatatypeConverter.printBase64Binary(img);
-			modelAndView.addObject("base64Img", enc);
+			if ((payment.getFileName() != null) && !"".equals(payment.getFileName())) {
+				byte[] img = fileService.readFile(payment.getFileName());
+				String enc = DatatypeConverter.printBase64Binary(img);
+				modelAndView.addObject("base64Img", enc);
+			}
 
 			
 		} catch (InvalidSessionException e) {
 			CommonUtil.logInternalError(logger, e);
 			modelAndView = new ModelAndView("redirect:/login");
 		} catch (NotAuthorizedException e) {
-			modelAndView = new ModelAndView("redirect:/login");
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("NotAuthorized");
 		} catch (Exception e) {
 			CommonUtil.logInternalError(logger, e);
-			modelAndView = new ModelAndView("redirect:/login");
+			modelAndView = new ModelAndView("Error500");
 		}
 
 		return modelAndView;
@@ -109,9 +113,11 @@ public class TreasuryController extends BaseController {
 			Payment payment = paymentService.getPaymentById(Integer.parseInt(paymentId));
 			modelAndView.addObject("payment", payment);
 			
-			byte[] img = fileService.readFile(payment.getFileName());
-			String enc = DatatypeConverter.printBase64Binary(img);
-			modelAndView.addObject("base64Img", enc);
+			if ((payment.getFileName() != null) && !"".equals(payment.getFileName())) {
+				byte[] img = fileService.readFile(payment.getFileName());
+				String enc = DatatypeConverter.printBase64Binary(img);
+				modelAndView.addObject("base64Img", enc);
+			}
 
 			String submit = request.getParameter("btnVerify");
 			logger.debug("submit: " + submit);
@@ -125,10 +131,11 @@ public class TreasuryController extends BaseController {
 			CommonUtil.logInternalError(logger, e);
 			modelAndView = new ModelAndView("redirect:/login");
 		} catch (NotAuthorizedException e) {
-			modelAndView = new ModelAndView("redirect:/login");
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("NotAuthorized");
 		} catch (Exception e) {
 			CommonUtil.logInternalError(logger, e);
-			modelAndView = new ModelAndView("redirect:/login");
+			modelAndView = new ModelAndView("Error500");
 		}
 
 		return modelAndView;

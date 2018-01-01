@@ -32,7 +32,8 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="upload-receipt">Upload receipt</a></li>
-            <li><a href="view-payment">View Payment</a></li>
+            <li><a href="view-contribution">View Contribution</a></li>
+            <li><a href="request-payment">Request Payment</a></li>
           </ul>
         </li>
 
@@ -44,6 +45,17 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="view-pending-payment">Payment Verification</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Approver</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="view-request-list">View Request List</a></li>
           </ul>
         </li>
 

@@ -13,6 +13,16 @@
 		<put-attribute name="content" value="/WEB-INF/pages/home.jsp" />
 	</definition>
 
+	<definition name="NotAuthorized" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/not-authorized.jsp" />
+	</definition>
+
+	<definition name="Error500" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/error-500.jsp" />
+	</definition>
+
 	<definition name="UploadReceipt" template="/WEB-INF/pages/main_template.jsp">
 		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
 		<put-attribute name="content" value="/WEB-INF/pages/upload-receipt.jsp" />
@@ -26,6 +36,26 @@
 	<definition name="PaymentDetail" template="/WEB-INF/pages/main_template.jsp">
 		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
 		<put-attribute name="content" value="/WEB-INF/pages/payment-detail.jsp" />
+	</definition>
+
+	<definition name="ViewContribution" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/view-contribution.jsp" />
+	</definition>
+
+	<definition name="RequestPayment" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/request-payment.jsp" />
+	</definition>
+
+	<definition name="ViewRequestList" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/request-approval-list.jsp" />
+	</definition>
+
+	<definition name="RequestApprovalDetail" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/request-approval-detail.jsp" />
 	</definition>
 
 </tiles-definitions>
