@@ -1,5 +1,6 @@
 package com.alumni.controller;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,16 +17,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alumni.bean.RegistrationBean;
 import com.alumni.bean.RequestPaymentBean;
 import com.alumni.bean.UploadReceiptBean;
 import com.alumni.bean.UserBean;
-import com.alumni.entity.MemberContribution;
-import com.alumni.entity.PaymentRequest;
+import com.alumni.entity.MemberDonation;
 import com.alumni.exception.BusinessProcessException;
 import com.alumni.exception.InvalidSessionException;
 import com.alumni.exception.NotAuthorizedException;
 import com.alumni.service.PaymentService;
 import com.alumni.service.RequestService;
+import com.alumni.service.UserService;
 import com.alumni.util.CommonUtil;
 import com.alumni.util.Constants;
 
@@ -39,6 +41,9 @@ public class MemberController extends BaseController {
 	@Autowired
 	RequestService requestService;
 	
+	@Autowired
+	private UserService userService;
+
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	private String ROLE = "MEMBER";
 
@@ -98,7 +103,7 @@ public class MemberController extends BaseController {
 	}
 
 	@RequestMapping(value = "/view-contribution", method = RequestMethod.GET)
-	public ModelAndView viewContribution(HttpServletRequest request, 			
+	public ModelAndView viewDonation(HttpServletRequest request, 			
 			HttpServletResponse response,
 			@ModelAttribute("uploadReceiptBean") UploadReceiptBean uploadReceiptBean,
 			BindingResult result) {
@@ -108,7 +113,7 @@ public class MemberController extends BaseController {
 			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
 			modelAndView = createModelAndViewInstance(userBean, ROLE, "ViewContribution");
 			
-			List<MemberContribution> contributionList = paymentService.getContributionListByUserId(userBean.getUser().getId());
+			List<MemberDonation> contributionList = paymentService.getContributionListByUserId(userBean.getUser().getId());
 			modelAndView.addObject("contributionList", contributionList);
 			
 		} catch (InvalidSessionException e) {
@@ -175,4 +180,34 @@ public class MemberController extends BaseController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/member-registration", method = RequestMethod.GET)
+	public ModelAndView memberRegistration(HttpServletRequest request, 			
+			HttpServletResponse response,
+			@ModelAttribute("registrationBean") RegistrationBean registrationBean,
+			BindingResult result) {
+		
+		ModelAndView modelAndView = new ModelAndView("MemberRegistration");
+		
+		return modelAndView;
+
+	}
+	
+	@RequestMapping(value = "/member-registration-action", method = RequestMethod.POST)
+	public ModelAndView memberRegistrationAction(HttpServletRequest request, 			
+			HttpServletResponse response,
+			@ModelAttribute("registrationBean") RegistrationBean registrationBean,
+			BindingResult result) {
+
+		ModelAndView modelAndView = new ModelAndView("MemberRegistration");
+		
+		try {
+			userService.saveNewUser(registrationBean);
+			modelAndView.addObject("message", "Your data is saved successfuly. Please login after your registration is approved");
+		} catch (BusinessProcessException e) {
+			modelAndView.addObject("message", e.getMessage());
+		}
+		
+		return modelAndView;
+
+	}
 }

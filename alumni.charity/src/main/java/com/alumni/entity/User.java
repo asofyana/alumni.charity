@@ -26,6 +26,7 @@ public class User {
 	private String grade1;
 	private String grade2;
 	private String grade3;
+	private String status;
 	private Date lastAccessDate;
 	private Date createdDate;
 	private String createdBy;
@@ -137,6 +138,14 @@ public class User {
 		this.grade3 = grade3;
 	}
 
+	@Column(name="STATUS")
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	@Column(name="LAST_ACCESS_DATE")
 	public Date getLastAccessDate() {
 		return lastAccessDate;

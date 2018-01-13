@@ -13,6 +13,7 @@ import com.alumni.dao.PaymentDao;
 import com.alumni.dao.RequestDao;
 import com.alumni.entity.Payment;
 import com.alumni.entity.PaymentRequest;
+import com.alumni.entity.PaymentType;
 import com.alumni.entity.User;
 import com.alumni.service.RequestService;
 import com.alumni.util.Constants;
@@ -103,12 +104,15 @@ public class RequestServiceImpl implements RequestService {
 		
 		if (approvalCount == Integer.parseInt(maxApprovalCountStr)) {
 
+			PaymentType pymType = new PaymentType();
+			pymType.setPaymentType(Constants.PaymentType.CHARITY_PAYMENT.toString());
+
 			// Create new payment
 			Payment payment = new Payment();
 			payment.setCreatedBy(String.valueOf(user.getId()));
 			payment.setCreatedDate(new Date());
 			payment.setAmount(paymentRequest.getAmount());
-			payment.setPaymentType(Constants.PaymentType.CHARITY_PAYMENT.toString());
+			payment.setPaymentType(pymType);
 			payment.setStatus(Constants.PaymentStatus.NEW.toString());
 			payment.setUser(user);
 			paymentDao.savePayment(payment);

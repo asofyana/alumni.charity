@@ -12,7 +12,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "T_MEMBER_CONTRIBUTION", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
-public class MemberContribution {
+public class MemberDonation {
 
 	private int id;
 	Payment payment;

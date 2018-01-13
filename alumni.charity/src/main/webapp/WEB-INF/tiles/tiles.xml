@@ -58,4 +58,7 @@
 		<put-attribute name="content" value="/WEB-INF/pages/request-approval-detail.jsp" />
 	</definition>
 
+	<definition name="MemberRegistration" template="/WEB-INF/pages/member-registration.jsp">
+	</definition>
+
 </tiles-definitions>

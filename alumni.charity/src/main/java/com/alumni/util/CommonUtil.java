@@ -42,16 +42,14 @@ public class CommonUtil {
 
 	public static void logInternalError(org.slf4j.Logger logger,Exception e)
 	{
-		StackTraceElement[] arr = e.getStackTrace();
-	
-		String desc = "";
-		
-		for(StackTraceElement ste:arr)
-		{
-			desc = desc + "Class : "+ste.getClassName()+", line : "+ste.getLineNumber()+"\r\n";
+		StringBuilder s = new StringBuilder(e.getMessage() + "\n\t");
+
+		StackTraceElement[] arrElement = e.getStackTrace();
+		for (StackTraceElement element : arrElement) {
+			s.append(element.toString() + "\n\t");
 		}
 		
-		logger.error(desc);
+		logger.error(s.toString());
 	}
 
 }

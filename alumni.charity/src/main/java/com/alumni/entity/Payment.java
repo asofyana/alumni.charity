@@ -17,7 +17,7 @@ public class Payment {
 	private int id;
 	private User user;
 	private String name;
-	private String paymentType;
+	private PaymentType paymentType;
 	private String fileName;
 	private String status;
 	private Date createdDate;
@@ -52,11 +52,12 @@ public class Payment {
 		this.name = name;
 	}
 
-	@Column(name="PAYMENT_TYPE")
-	public String getPaymentType() {
+	@ManyToOne
+	@JoinColumn(name="PAYMENT_TYPE", referencedColumnName="PAYMENT_TYPE")
+	public PaymentType getPaymentType() {
 		return paymentType;
 	}
-	public void setPaymentType(String paymentType) {
+	public void setPaymentType(PaymentType paymentType) {
 		this.paymentType = paymentType;
 	}
 

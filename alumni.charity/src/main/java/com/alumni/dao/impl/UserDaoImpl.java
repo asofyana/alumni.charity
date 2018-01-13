@@ -27,7 +27,15 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	public void updateUser(User user) {
 		user.setUpdatedDate(new Date());
-		getCurrentSession().update(user);
+		updateObject(user);
+	}
+	
+	public void addUser(User user) {
+		saveObject(user);
+	}
+	
+	public void addUserRole(UserRole userRole) {
+		saveObject(userRole);
 	}
 
 	@SuppressWarnings("unchecked")

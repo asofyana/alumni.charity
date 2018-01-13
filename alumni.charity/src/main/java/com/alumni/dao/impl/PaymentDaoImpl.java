@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alumni.dao.PaymentDao;
-import com.alumni.entity.MemberContribution;
+import com.alumni.entity.MemberDonation;
 import com.alumni.entity.Payment;
 
 @Repository
@@ -46,22 +46,22 @@ public class PaymentDaoImpl extends BaseDao implements PaymentDao {
 	}
 
 	@Override
-	public MemberContribution getLastContributionMonth(int userId) {
+	public MemberDonation getLastContributionMonth(int userId) {
 		//Query query = getCurrentSession().createQuery("select max(month) from MemberContribution where user.id=:userId");
 		//query.setParameter("userId", userId);
 		//return (Date) query.uniqueResult();
 		
-		DetachedCriteria maxQuery = DetachedCriteria.forClass(MemberContribution.class);
+		DetachedCriteria maxQuery = DetachedCriteria.forClass(MemberDonation.class);
 		maxQuery.add(Restrictions.eq("user.id", userId));
 		maxQuery.setProjection( Projections.max("month"));
 		
-		Criteria query = getCurrentSession().createCriteria(MemberContribution.class);
+		Criteria query = getCurrentSession().createCriteria(MemberDonation.class);
 		query.add(Property.forName("month").eq(maxQuery));
 		
 		List lst = query.list();
 		
 		if ((lst != null) && (lst.size()>0)) {
-			return (MemberContribution) lst.get(0);
+			return (MemberDonation) lst.get(0);
 		}
 		
 		return null;
@@ -69,23 +69,23 @@ public class PaymentDaoImpl extends BaseDao implements PaymentDao {
 	}
 
 	@Override
-	public void saveMemberContribution(MemberContribution memberContribution) {
+	public void saveMemberContribution(MemberDonation memberContribution) {
 		saveObject(memberContribution);
 	}
 
 	@Override
-	public void updateMemberContribution(MemberContribution memberContribution) {
+	public void updateMemberContribution(MemberDonation memberContribution) {
 		updateObject(memberContribution);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<MemberContribution> getContributionListByUserId(int userId) {
+	public List<MemberDonation> getContributionListByUserId(int userId) {
 
 		Map<String, Object> criteria = new HashMap<String, Object>();
 		criteria.put("user.id", userId);
 		
-		return (List<MemberContribution>) (List<?>) getObjectsByCriteria(MemberContribution.class, criteria);
+		return (List<MemberDonation>) (List<?>) getObjectsByCriteria(MemberDonation.class, criteria);
 	}
 
 

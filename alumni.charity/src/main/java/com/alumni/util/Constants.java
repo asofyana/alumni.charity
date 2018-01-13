@@ -25,6 +25,7 @@ public class Constants {
 	
 	public enum PaymentType {
 		MEMBER_MONTHLY("MEMBER_MONTHLY"),
+		NONMEMBER("NONMEMBER"),
 		CHARITY_PAYMENT("CHARITY_PAYMENT");
 		
 		private String type;
@@ -36,7 +37,6 @@ public class Constants {
 	    public String toString() {
 	    	return type;
 	    }
-
 	}
 
 	public enum RequestPaymentStatus {
@@ -52,7 +52,21 @@ public class Constants {
 	    public String toString() {
 	    	return status;
 	    }
-
 	}
 
+	public enum MemberStatus {
+		
+		PENDING("PENDING"),
+		ACTIVE("ACTIVE");
+		
+		private String status;
+		MemberStatus(String status) {
+			this.status = status;
+		}
+
+		@Override
+	    public String toString() {
+	    	return status;
+	    }
+	}
 }
