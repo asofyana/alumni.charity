@@ -57,7 +57,8 @@ public class Constants {
 	public enum MemberStatus {
 		
 		PENDING("PENDING"),
-		ACTIVE("ACTIVE");
+		ACTIVE("ACTIVE"),
+		REJECTED("REJECTED");
 		
 		private String status;
 		MemberStatus(String status) {

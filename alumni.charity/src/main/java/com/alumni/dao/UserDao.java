@@ -11,4 +11,5 @@ public interface UserDao {
 	public void addUser(User user);
 	public void addUserRole(UserRole userRole);
 	public List<UserRole> getRoleListByUserId(int userId);
+	public List<User> getUserListByStatus(String status);
 }

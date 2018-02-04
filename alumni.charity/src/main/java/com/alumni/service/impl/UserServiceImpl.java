@@ -140,4 +140,19 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public List<User> getUserListByStatus(String status) {
+		return userDao.getUserListByStatus(status);
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		return userDao.getUserByEmail(email);
+	}
+
+	@Override
+	public void updateUser(User user) {
+		userDao.updateUser(user);
+	}
+
 }

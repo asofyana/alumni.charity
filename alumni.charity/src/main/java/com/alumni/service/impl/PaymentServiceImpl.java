@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alumni.dao.PaymentDao;
-import com.alumni.entity.MemberDonation;
+import com.alumni.entity.MemberContribution;
 import com.alumni.entity.Payment;
 import com.alumni.entity.PaymentType;
 import com.alumni.entity.User;
@@ -84,7 +84,7 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentDao.updatePayment(payment);
 		if (Constants.PaymentType.MEMBER_MONTHLY.toString().equals(payment.getPaymentType())) {
 			double monthlyContribution = Double.parseDouble(monthlyContributionStr);
-			MemberDonation lastContr = paymentDao.getLastContributionMonth(payment.getUser().getId());
+			MemberContribution lastContr = paymentDao.getLastContributionMonth(payment.getUser().getId());
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			Date startPayment = df.parse(initialMonth);
 			double amount = payment.getAmount();
@@ -107,7 +107,7 @@ public class PaymentServiceImpl implements PaymentService {
 			}
 			
 			while (amount > 0) {
-				MemberDonation contr = new MemberDonation();
+				MemberContribution contr = new MemberContribution();
 				contr.setMonth(startPayment);
 				contr.setCreatedDate(new Date());
 				contr.setCreatedBy(String.valueOf(user.getId()));
@@ -134,7 +134,7 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 	
 	@Override
-	public List<MemberDonation> getContributionListByUserId(int userId) {
+	public List<MemberContribution> getContributionListByUserId(int userId) {
 		return paymentDao.getContributionListByUserId(userId);
 	}
 }

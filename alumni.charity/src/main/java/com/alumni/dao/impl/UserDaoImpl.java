@@ -45,4 +45,12 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		return crit.list();
 	}
 
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<User> getUserListByStatus(String status) {
+		Criteria crit = getCurrentSession().createCriteria(User.class);
+		crit.add(Restrictions.eq("status", status));
+		return crit.list();
+	}
+
 }

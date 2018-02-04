@@ -21,7 +21,7 @@ import com.alumni.bean.RegistrationBean;
 import com.alumni.bean.RequestPaymentBean;
 import com.alumni.bean.UploadReceiptBean;
 import com.alumni.bean.UserBean;
-import com.alumni.entity.MemberDonation;
+import com.alumni.entity.MemberContribution;
 import com.alumni.exception.BusinessProcessException;
 import com.alumni.exception.InvalidSessionException;
 import com.alumni.exception.NotAuthorizedException;
@@ -113,7 +113,7 @@ public class MemberController extends BaseController {
 			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
 			modelAndView = createModelAndViewInstance(userBean, ROLE, "ViewContribution");
 			
-			List<MemberDonation> contributionList = paymentService.getContributionListByUserId(userBean.getUser().getId());
+			List<MemberContribution> contributionList = paymentService.getContributionListByUserId(userBean.getUser().getId());
 			modelAndView.addObject("contributionList", contributionList);
 			
 		} catch (InvalidSessionException e) {
