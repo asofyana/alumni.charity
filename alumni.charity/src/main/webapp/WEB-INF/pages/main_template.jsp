@@ -141,6 +141,8 @@ desired effect
 <!-- DataTables -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
 
@@ -157,6 +159,17 @@ desired effect
   });
 </script>
 
+<script>
+  $(function () {
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
+    $('#datepicker2').datepicker({
+        autoclose: true
+      });
+  });
+</script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

@@ -1,5 +1,9 @@
 package com.alumni.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -126,6 +130,78 @@ public class TreasuryController extends BaseController {
 				paymentService.verifyPayment(payment, userBean.getUser());
 				modelAndView.addObject("message", "Payment is verified successfully");
 			}
+			
+		} catch (InvalidSessionException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("redirect:/login");
+		} catch (NotAuthorizedException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("NotAuthorized");
+		} catch (Exception e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("Error500");
+		}
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/search-payment", method = RequestMethod.GET)
+	public ModelAndView searchPayment(HttpServletRequest request, 			
+			HttpServletResponse response) {
+		
+		ModelAndView modelAndView = null;
+		try {
+			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
+			modelAndView = createModelAndViewInstance(userBean, ROLE, "SearchPayment");
+			
+		} catch (InvalidSessionException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("redirect:/login");
+		} catch (NotAuthorizedException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("NotAuthorized");
+		} catch (Exception e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("Error500");
+		}
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/search-payment-action", method = RequestMethod.POST)
+	public ModelAndView searchPaymentAction(HttpServletRequest request, 			
+			HttpServletResponse response) {
+		
+		ModelAndView modelAndView = null;
+		try {
+			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
+			modelAndView = createModelAndViewInstance(userBean, ROLE, "SearchPayment");
+			
+			String strStartDate = request.getParameter("startDate");
+			String strEndDate = request.getParameter("endDate");
+			String status = request.getParameter("status");
+			
+			modelAndView.addObject("strStartDate", strStartDate);
+			modelAndView.addObject("strEndDate", strEndDate);
+			modelAndView.addObject("status", status);
+			
+			Date startDate = null;
+			Date endDate = null;
+			
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+			
+			try {
+				if ((strStartDate != null) && !"".equals(strStartDate))
+					startDate = df.parse(strStartDate);
+
+				if ((strEndDate != null) && !"".equals(strEndDate))
+					endDate = df.parse(strEndDate);
+			} catch (ParseException e) {
+				CommonUtil.logInternalError(logger, e);
+			}
+			
+			List<Payment> paymentList = paymentService.getPaymentByStatus(status, startDate, endDate);
+			modelAndView.addObject("paymentList", paymentList);
 			
 		} catch (InvalidSessionException e) {
 			CommonUtil.logInternalError(logger, e);

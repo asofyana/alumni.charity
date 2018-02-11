@@ -66,7 +66,9 @@
     </form:form>
 
     <a href="member-registration">Register</a><br>
+    <!-- 
     <a href="#">Non-member Donation</a><br>
+     -->
 
   </div>
   <!-- /.login-box-body -->

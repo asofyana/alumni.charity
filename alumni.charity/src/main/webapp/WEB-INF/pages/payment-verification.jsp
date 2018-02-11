@@ -28,7 +28,7 @@
                   <td><a href="view-payment-detail?id=${payment.id}">${payment.createdDate}</a></td>
                   <td>${payment.user.fullName}</td>
                   <td><fmt:formatNumber value="${payment.amount}" type="number"/></td>
-                  <td>${payment.paymentType}</td>
+                  <td>${payment.paymentType.paymentType}</td>
                 </tr>
 			</c:forEach>
 

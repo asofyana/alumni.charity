@@ -38,6 +38,11 @@
 		<put-attribute name="content" value="/WEB-INF/pages/payment-detail.jsp" />
 	</definition>
 
+	<definition name="SearchPayment" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/payment-search.jsp" />
+	</definition>
+
 	<definition name="ViewContribution" template="/WEB-INF/pages/main_template.jsp">
 		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
 		<put-attribute name="content" value="/WEB-INF/pages/view-contribution.jsp" />

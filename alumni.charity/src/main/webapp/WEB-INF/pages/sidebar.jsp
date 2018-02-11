@@ -55,6 +55,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            <li><a href="search-payment">Search Payment</a></li>
             <li><a href="view-pending-payment">Payment Verification</a></li>
           </ul>
         </li>

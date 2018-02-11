@@ -1,5 +1,7 @@
 package com.alumni.dao.impl;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,11 +42,35 @@ public class PaymentDaoImpl extends BaseDao implements PaymentDao {
 		return (List<Payment>) (List<?>) getObjectsByCriteria(Payment.class, criteria);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Payment> getPaymentByStatus(String status, Date startDate, Date endDate) {
+		
+		
+		Criteria crit = getCurrentSession().createCriteria(Payment.class);
+		
+		if ((status != null) && !"".equals(status))
+			crit.add(Restrictions.eq("status", status));
+		
+		if (startDate != null)
+			crit.add(Restrictions.ge("createdDate", startDate));
+		
+		if (endDate != null) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(endDate);
+			cal.add(Calendar.DATE, 1);
+			crit.add(Restrictions.lt("createdDate", cal.getTime()));
+		}
+		
+		return (List<Payment>) (List<?>) crit.list();
+	}
+
 	@Override
 	public Payment getPaymentById(int id) {
 		return (Payment) getObjectById(Payment.class, id);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public MemberContribution getLastContributionMonth(int userId) {
 		//Query query = getCurrentSession().createQuery("select max(month) from MemberContribution where user.id=:userId");
@@ -87,6 +113,5 @@ public class PaymentDaoImpl extends BaseDao implements PaymentDao {
 		
 		return (List<MemberContribution>) (List<?>) getObjectsByCriteria(MemberContribution.class, criteria);
 	}
-
 
 }

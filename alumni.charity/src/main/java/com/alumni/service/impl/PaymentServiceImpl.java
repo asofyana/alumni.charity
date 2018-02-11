@@ -74,6 +74,11 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
+	public List<Payment> getPaymentByStatus(String status, Date startDate, Date endDate) {
+		return paymentDao.getPaymentByStatus(status, startDate, endDate);
+	}
+	
+	@Override
 	public Payment getPaymentById(int id) {
 		return paymentDao.getPaymentById(id);
 	}
