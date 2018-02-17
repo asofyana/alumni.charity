@@ -5,10 +5,16 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-Request Payment
-
 <form:form action="${contextPath}/request-payment-action" id="form-request-payment" enctype="multipart/form-data"  
 method="post" modelAttribute="requestPaymentBean">
+
+<div class="box box-info">
+
+    <div class="box-body">
+	    <div class="box-header with-border">
+	      <h3 class="box-title">Object Donation Request</h3>
+	    </div>
+    </div>
 
     <div class="box-body">
     	${message}
@@ -16,7 +22,7 @@ method="post" modelAttribute="requestPaymentBean">
 		
     <div class="box-body" style="width:300px;">
       <div class="form-group">
-        <label for="exampleInputEmail1">Title</label>
+        <label for="exampleInputEmail1">Name</label>
         <form:input type="text" class="form-control" name="title" path="title" />
       </div>
       <div class="form-group">
@@ -40,7 +46,7 @@ method="post" modelAttribute="requestPaymentBean">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 
-
+</div>
 </form:form>
 
 

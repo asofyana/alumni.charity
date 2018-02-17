@@ -68,12 +68,22 @@
 		<put-attribute name="content" value="/WEB-INF/pages/member-pending-list.jsp" />
 	</definition>
 
-	<definition name="ViewPendingMemberDetail" template="/WEB-INF/pages/main_template.jsp">
+	<definition name="ViewMemberDetail" template="/WEB-INF/pages/main_template.jsp">
 		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
-		<put-attribute name="content" value="/WEB-INF/pages/member-pending-detail.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/member-detail.jsp" />
 	</definition>
 
 	<definition name="MemberRegistration" template="/WEB-INF/pages/member-registration.jsp">
+	</definition>
+
+	<definition name="MemberSearch" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/member-search.jsp" />
+	</definition>
+
+	<definition name="MemberRoleUpdate" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/member-role-update.jsp" />
 	</definition>
 
 </tiles-definitions>

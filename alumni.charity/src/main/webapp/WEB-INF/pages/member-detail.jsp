@@ -6,7 +6,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<h3 class="box-title">Request Payment</h3>
+<h3 class="box-title">Member Detail</h3>
 
 <form:form action="${contextPath}/member-approval-action" id="form1" enctype="multipart/form-data"  
 method="post" >
@@ -17,8 +17,10 @@ method="post" >
 	<input type="hidden" name="email" value="${user.email}">
 		
 	<dl class="dl-horizontal">
+		<c:if test="${not empty approveButton}">
 		<dt>Request Date</dt>
 		<dd>${user.createdDate}</dd>
+		</c:if>
 		<dt>Name</dt>
 		<dd>${user.fullName}</dd>
 		<dt>Email</dt>
@@ -31,6 +33,12 @@ method="post" >
 		<dd>${user.homePhoneNumber}</dd>
 		<dt>Mobile</dt>
 		<dd>${user.mobileNumber}</dd>
+		<dt>Profession</dt>
+		<dd>${user.jobTitle}</dd>
+		<dt>Office Name</dt>
+		<dd>${user.officeName}</dd>
+		<dt>Office Address</dt>
+		<dd>${user.officeAddress}</dd>
 		<dt>Grade 1</dt>
 		<dd>${user.grade1}</dd>
 		<dt>Grade 2</dt>
@@ -39,11 +47,17 @@ method="post" >
 		<dd>${user.grade3}</dd>
 	</dl>
 
-
+	<c:if test="${not empty approveButton}">
     <div class="box-body">
       <input type="submit" class="btn btn-primary" value="Approve" name="btnApprove">
     </div>
+	</c:if>
 
+	<c:if test="${not empty ADMIN}">
+    <div class="box-body">
+      <input type="button" class="btn btn-primary" value="Change Role" name="btnChangeRole" onClick="window.location.href='member-role-update?email=${user.email}'">
+    </div>
+	</c:if>
 
 </form:form>
 

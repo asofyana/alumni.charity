@@ -1,6 +1,5 @@
 package com.alumni.controller;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +21,7 @@ import com.alumni.bean.RequestPaymentBean;
 import com.alumni.bean.UploadReceiptBean;
 import com.alumni.bean.UserBean;
 import com.alumni.entity.MemberContribution;
+import com.alumni.entity.User;
 import com.alumni.exception.BusinessProcessException;
 import com.alumni.exception.InvalidSessionException;
 import com.alumni.exception.NotAuthorizedException;
@@ -210,4 +210,88 @@ public class MemberController extends BaseController {
 		return modelAndView;
 
 	}
+	
+	@RequestMapping(value = "/member-search", method = RequestMethod.GET)
+	public ModelAndView searchMember(HttpServletRequest request, 			
+			HttpServletResponse response,
+			@ModelAttribute("user") User user,
+			BindingResult result) {
+		
+		ModelAndView modelAndView = null;
+		try {
+			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
+			modelAndView = createModelAndViewInstance(userBean, ROLE, "MemberSearch");
+		} catch (InvalidSessionException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("redirect:/login");
+		} catch (NotAuthorizedException e) {
+			modelAndView = new ModelAndView("NotAuthorized");
+		} catch (Exception e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("Error500");
+		}
+
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/member-search-action", method = RequestMethod.POST)
+	public ModelAndView searchMemberAction(HttpServletRequest request, 			
+			HttpServletResponse response,
+			@ModelAttribute("user") User user,
+			BindingResult result) {
+		
+		ModelAndView modelAndView = null;
+		try {
+			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
+			modelAndView = createModelAndViewInstance(userBean, ROLE, "MemberSearch");
+			
+			logger.debug("getFullName:" + user.getFullName());
+			logger.debug("getCity:" + user.getCity());
+			logger.debug("getGrade1:" + user.getGrade1());
+			logger.debug("getGrade2:" + user.getGrade2());
+			logger.debug("getGrade3:" + user.getGrade3());
+			
+			List<User> userList = userService.searchUser(user);
+			modelAndView.addObject("memberList", userList);
+			
+		} catch (InvalidSessionException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("redirect:/login");
+		} catch (NotAuthorizedException e) {
+			modelAndView = new ModelAndView("NotAuthorized");
+		} catch (Exception e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("Error500");
+		}
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/member-detail", method = RequestMethod.GET)
+	public ModelAndView viewPendingMemberDetail(HttpServletRequest request, 			
+			HttpServletResponse response) {
+		
+		ModelAndView modelAndView = null;
+		try {
+			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
+			modelAndView = createModelAndViewInstance(userBean, ROLE, "ViewMemberDetail");
+
+			String email = request.getParameter("email");
+
+			User user = userService.getUserByEmail(email);
+			modelAndView.addObject("user", user);
+			
+		} catch (InvalidSessionException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("redirect:/login");
+		} catch (NotAuthorizedException e) {
+			modelAndView = new ModelAndView("NotAuthorized");
+		} catch (Exception e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("Error500");
+		}
+
+		return modelAndView;
+	}
+
 }

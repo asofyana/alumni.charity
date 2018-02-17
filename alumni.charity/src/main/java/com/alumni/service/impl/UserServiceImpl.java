@@ -1,7 +1,10 @@
 package com.alumni.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,8 +125,7 @@ public class UserServiceImpl implements UserService {
 			
 			logger.info("User ID: " + user.getId());
 			
-			Role role = new Role();
-			role.setId(2);
+			Role role = userDao.getRoleByCode("MEMBER");
 			
 			UserRole userRole = new UserRole();
 			userRole.setRole(role);
@@ -153,6 +155,46 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUser(User user) {
 		userDao.updateUser(user);
+	}
+
+	@Override
+	public List<User> searchUser(User user) {
+		return userDao.searchUser(user);
+	}
+
+	@Override
+	public List<UserRole> getRoleListByUserId(int userId) {
+		return userDao.getRoleListByUserId(userId);
+	}
+
+	@Override
+	public void updateUserRole(Map<String, String> roleMap, User user) {
+		Set<String> keySet = roleMap.keySet();
+		List<UserRole> userRoleList = userDao.getRoleListByUserId(user.getId());
+		List<String> tobeAdded = new ArrayList<String>();
+		for (String key : keySet) {
+			boolean found = false;
+			for (UserRole userRole : userRoleList) {
+				if (userRole.getRole().getCode().equals(key)) {
+					if (roleMap.get(key) == null) {
+						userDao.deleteUserRole(userRole);
+					}
+					found = true;
+					break;
+				}
+			}
+			if (!found && (roleMap.get(key) != null) && ("on".equals(roleMap.get(key)))) {
+				tobeAdded.add(key);
+			}
+		}
+		for (String roleCode : tobeAdded) {
+			Role role = userDao.getRoleByCode(roleCode);
+			UserRole userRole = new UserRole();
+			userRole.setRole(role);
+			userRole.setUser(user);
+			userDao.addUserRole(userRole);
+		}
+		
 	}
 
 }

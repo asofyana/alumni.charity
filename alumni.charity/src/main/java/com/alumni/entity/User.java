@@ -1,7 +1,6 @@
 package com.alumni.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +26,9 @@ public class User {
 	private String grade2;
 	private String grade3;
 	private String status;
+	private String jobTitle;
+	private String officeName;
+	private String officeAddress;
 	private Date lastAccessDate;
 	private Date createdDate;
 	private String createdBy;
@@ -144,6 +146,30 @@ public class User {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	@Column(name="JOB_TITLE")
+	public String getJobTitle() {
+		return jobTitle;
+	}
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
+	}
+	
+	@Column(name="OFFICE_NAME")
+	public String getOfficeName() {
+		return officeName;
+	}
+	public void setOfficeName(String officeName) {
+		this.officeName = officeName;
+	}
+	
+	@Column(name="OFFICE_ADDRESS")
+	public String getOfficeAddress() {
+		return officeAddress;
+	}
+	public void setOfficeAddress(String officeAddress) {
+		this.officeAddress = officeAddress;
 	}
 	
 	@Column(name="LAST_ACCESS_DATE")
