@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
@@ -127,6 +128,17 @@ public class PaymentDaoImpl extends BaseDao implements PaymentDao {
 	@Override
 	public void savePaymentAllocation(PaymentAllocation paymentAllocation) {
 		saveObject(paymentAllocation);
+	}
+
+	@Override
+	public double getTotalAllocationAmount(String allocationType) {
+		Query query = getCurrentSession().createQuery("select sum(amount) from PaymentAllocation where allocationType=:allocationType and payment.status = 'VERIFIED'");
+		query.setParameter("allocationType", allocationType);
+		if (query.uniqueResult() != null) {
+			return (Double) query.uniqueResult();
+		} else {
+			return 0;
+		}
 	}
 
 }

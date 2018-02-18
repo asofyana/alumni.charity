@@ -22,6 +22,8 @@
   -->
   <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
+  <link rel="stylesheet" href="assets/css/main-style.css">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -54,15 +56,6 @@ desired effect
 
   <!-- Main Header -->
   <header class="main-header">
-
-    <!-- Logo -->
-    <div class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
-    </div>
-
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
       <!-- Sidebar toggle button-->
@@ -77,7 +70,7 @@ desired effect
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="logout" >
-              <span class="hidden-xs">Logout</span>
+              <span>Logout</span>
             </a>
           </li>
         </ul>

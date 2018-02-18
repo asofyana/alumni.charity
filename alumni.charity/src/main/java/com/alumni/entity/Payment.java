@@ -18,6 +18,7 @@ public class Payment {
 
 	private int id;
 	private User user;
+	private PaymentRequest paymentRequest;
 	private String name;
 	private String fileName;
 	private String status;
@@ -46,6 +47,15 @@ public class Payment {
 		this.user = user;
 	}
 
+	@ManyToOne
+	@JoinColumn(name="REQUEST_ID", referencedColumnName="ID")
+	public PaymentRequest getPaymentRequest() {
+		return paymentRequest;
+	}
+	public void setPaymentRequest(PaymentRequest paymentRequest) {
+		this.paymentRequest = paymentRequest;
+	}
+	
 	@Column(name="NAME")
 	public String getName() {
 		return name;

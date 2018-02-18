@@ -116,11 +116,12 @@ public class RequestServiceImpl implements RequestService {
 			payment.setCashFlow(Constants.CASH_OUT);
 			payment.setStatus(Constants.PaymentStatus.NEW.toString());
 			payment.setUser(user);
+			payment.setPaymentRequest(paymentRequest);
 			paymentDao.savePayment(payment);
 
 			PaymentAllocation paymentAlloc = new PaymentAllocation();
 			paymentAlloc.setPayment(payment);
-			paymentAlloc.setAllocationType(Constants.PaymentAllocation.OBJECT_DONATION.toString());
+			paymentAlloc.setAllocationType(Constants.PaymentAllocation.DISTRIBUTION.toString());
 			paymentAlloc.setAmount(paymentRequest.getAmount());
 			paymentDao.savePaymentAllocation(paymentAlloc);
 

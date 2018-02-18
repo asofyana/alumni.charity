@@ -17,12 +17,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alumni.bean.LoginForm;
 import com.alumni.bean.UserBean;
 import com.alumni.entity.UserRole;
+import com.alumni.exception.BusinessProcessException;
+import com.alumni.exception.InvalidSessionException;
+import com.alumni.exception.NotAuthorizedException;
 import com.alumni.service.UserService;
+import com.alumni.util.CommonUtil;
 import com.alumni.util.Constants;
 
 @Controller
 @Scope("request")
-public class LoginController {
+public class LoginController extends BaseController {
 
 	@Autowired
 	private UserService userService;
@@ -53,7 +57,7 @@ public class LoginController {
 		UserBean userBean = userService.login(loginForm.getEmail(), loginForm.getPassword());
 		if (userBean != null) {
 			request.getSession().setAttribute(Constants.SESS_USER, userBean);
-			modelAndView.setViewName("Home");
+			modelAndView.setViewName("redirect:/home");
 			modelAndView.addObject("user", userBean.getUser());
 			modelAndView.addObject("pageHeader", "Dashboard");
 			modelAndView.addObject("pageDescription", "");
@@ -85,8 +89,22 @@ public class LoginController {
 			@ModelAttribute("loginForm") LoginForm loginForm,
 			BindingResult result) {
 
-		ModelAndView modelAndView = new ModelAndView("Home");
+		ModelAndView modelAndView = null;
+		try {
+			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
+			modelAndView = createModelAndViewInstance(userBean, "MEMBER", "Home");
+		} catch (InvalidSessionException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("redirect:/login");
+		} catch (NotAuthorizedException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("NotAuthorized");
+		} catch (Exception e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("Error500");
+		}
 		return modelAndView;
+
 	}
 
 }

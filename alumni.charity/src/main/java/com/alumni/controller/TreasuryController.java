@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alumni.bean.UserBean;
 import com.alumni.entity.Payment;
+import com.alumni.entity.PaymentAllocation;
 import com.alumni.exception.InvalidSessionException;
 import com.alumni.exception.NotAuthorizedException;
 import com.alumni.service.FileService;
@@ -87,7 +88,6 @@ public class TreasuryController extends BaseController {
 				modelAndView.addObject("base64Img", enc);
 			}
 
-			
 		} catch (InvalidSessionException e) {
 			CommonUtil.logInternalError(logger, e);
 			modelAndView = new ModelAndView("redirect:/login");

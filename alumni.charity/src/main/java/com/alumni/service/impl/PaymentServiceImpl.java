@@ -13,12 +13,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.alumni.controller.MemberController;
 import com.alumni.dao.PaymentDao;
 import com.alumni.entity.MemberContribution;
 import com.alumni.entity.Payment;
 import com.alumni.entity.PaymentAllocation;
-import com.alumni.entity.PaymentType;
 import com.alumni.entity.User;
 import com.alumni.exception.BusinessProcessException;
 import com.alumni.service.FileService;
@@ -177,4 +175,10 @@ public class PaymentServiceImpl implements PaymentService {
 	public List<MemberContribution> getContributionListByUserId(int userId) {
 		return paymentDao.getContributionListByUserId(userId);
 	}
+
+	@Override
+	public double getTotalAllocationAmount(String allocationType) {
+		return paymentDao.getTotalAllocationAmount(allocationType);
+	}
+
 }

@@ -78,7 +78,7 @@ public class Constants {
 		
 		COMMITTED_DONATION("COMMITTED_DONATION"),
 		UNCOMMITTED_DONATION("UNCOMMITTED_DONATION"),
-		OBJECT_DONATION("OBJECT_DONATION");
+		DISTRIBUTION("DISTRIBUTION");
 		
 		private String paymentAllocation;
 		PaymentAllocation(String paymentAllocation) {

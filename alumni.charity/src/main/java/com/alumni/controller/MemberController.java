@@ -337,4 +337,36 @@ public class MemberController extends BaseController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/payment-summary", method = RequestMethod.GET)
+	public ModelAndView viewPaymentSummary(HttpServletRequest request, 			
+			HttpServletResponse response) {
+		
+		ModelAndView modelAndView = null;
+		try {
+			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
+			modelAndView = createModelAndViewInstance(userBean, ROLE, "PaymentSummary");
+			
+			double committedDonation = paymentService.getTotalAllocationAmount(Constants.PaymentAllocation.COMMITTED_DONATION.toString());
+			double uncommittedDonation = paymentService.getTotalAllocationAmount(Constants.PaymentAllocation.UNCOMMITTED_DONATION.toString());
+			double distribution = paymentService.getTotalAllocationAmount(Constants.PaymentAllocation.DISTRIBUTION.toString());
+			double totalAmount = committedDonation + uncommittedDonation - distribution;  
+			
+			modelAndView.addObject("committedDonation", committedDonation);
+			modelAndView.addObject("uncommittedDonation", uncommittedDonation);
+			modelAndView.addObject("distribution", distribution);
+			modelAndView.addObject("totalAmount", totalAmount);
+			
+		} catch (InvalidSessionException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("redirect:/login");
+		} catch (NotAuthorizedException e) {
+			modelAndView = new ModelAndView("NotAuthorized");
+		} catch (Exception e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("Error500");
+		}
+
+		return modelAndView;
+	}
+
 }

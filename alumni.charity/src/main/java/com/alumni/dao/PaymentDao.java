@@ -19,4 +19,5 @@ public interface PaymentDao {
 	public List<MemberContribution> getContributionListByUserId(int userId);
 	public List<PaymentAllocation> getPaymentAllocationList(int paymentId);
 	public void savePaymentAllocation(PaymentAllocation paymentAllocation);
+	public double getTotalAllocationAmount(String allocationType);
 }

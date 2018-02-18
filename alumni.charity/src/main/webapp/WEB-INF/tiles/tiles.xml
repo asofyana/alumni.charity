@@ -86,4 +86,9 @@
 		<put-attribute name="content" value="/WEB-INF/pages/member-role-update.jsp" />
 	</definition>
 
+	<definition name="PaymentSummary" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/payment-summary.jsp" />
+	</definition>
+
 </tiles-definitions>

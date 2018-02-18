@@ -6,7 +6,14 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<h3 class="box-title">Payment Verification</h3>
+	<c:if test="${not empty payment.paymentRequest}">
+		<h3 class="box-title">Payment Request</h3>
+	</c:if>
+	
+	<c:if test="${empty payment.paymentRequest}">
+		<h3 class="box-title">Payment Verification</h3>
+	</c:if>
+
 
 <form:form action="${contextPath}/verify-payment" id="form-payment-verification" enctype="multipart/form-data" class="form-horizontal"  
 method="post">
@@ -20,13 +27,36 @@ method="post">
 	<dl class="dl-horizontal">
 		<dt>Date</dt>
 		<dd>${payment.createdDate}</dd>
-		<dt>Name</dt>
+
+		<c:if test="${not empty payment.paymentRequest}">
+			<dt>Requester</dt>
+		</c:if>
+		<c:if test="${empty payment.paymentRequest}">
+			<dt>Name</dt>
+		</c:if>
+
 		<dd>${payment.user.fullName}</dd>
 		<dt>Amount</dt>
 		<dd><fmt:formatNumber value="${payment.amount}" type="number"/></dd>
 		<dt>Cash in/out</dt>
 		<dd>${payment.cashFlow}</dd>
 	</dl>
+
+	<c:if test="${not empty payment.paymentRequest}">
+			<dl class="dl-horizontal">
+		<dt>Request Date</dt>
+		<dd>${payment.paymentRequest.createdDate}</dd>
+		<dt>Title</dt>
+		<dd>${payment.paymentRequest.title}</dd>
+		<dt>Type</dt>
+		<dd>${payment.paymentRequest.type}</dd>
+		<dt>Amount</dt>
+		<dd><fmt:formatNumber value="${payment.paymentRequest.amount}" type="number"/></dd>
+		<dt>Description</dt>
+		<dd>${payment.paymentRequest.description}</dd>
+	</dl>
+
+	</c:if>
 
 	<c:if test="${not empty base64Img}">
 	    <div class="box-body" style="width:300px;">
