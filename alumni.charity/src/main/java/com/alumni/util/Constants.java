@@ -7,6 +7,9 @@ public class Constants {
 	
 	public static String PAYMENT_TYPE_MEMBER_MONTHLY = "MEMBER_MONTHLY";
 	
+	public static String CASH_IN = "IN";
+	public static String CASH_OUT = "OUT";
+	
 	public enum PaymentStatus {
 		NEW("NEW"),
 		VERIFIED("VERIFIED");
@@ -70,4 +73,22 @@ public class Constants {
 	    	return status;
 	    }
 	}
+
+	public enum PaymentAllocation {
+		
+		COMMITTED_DONATION("COMMITTED_DONATION"),
+		UNCOMMITTED_DONATION("UNCOMMITTED_DONATION"),
+		OBJECT_DONATION("OBJECT_DONATION");
+		
+		private String paymentAllocation;
+		PaymentAllocation(String paymentAllocation) {
+			this.paymentAllocation = paymentAllocation;
+		}
+
+		@Override
+	    public String toString() {
+	    	return paymentAllocation;
+	    }
+	}
+
 }

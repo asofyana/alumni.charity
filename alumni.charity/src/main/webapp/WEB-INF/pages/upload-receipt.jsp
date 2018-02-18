@@ -13,8 +13,19 @@ method="post" modelAttribute="uploadReceiptBean">
 
     <div class="box-body" style="width:300px;">
       <div class="form-group">
-        <label for="exampleInputEmail1">Amount</label>
-        <form:input type="text" class="form-control" name="amount" path="amount" />
+        <label for="exampleInputEmail1">Total Amount</label>
+        <form:input type="text" class="form-control" name="totalAmount" path="totalAmount" />
+        <br>
+        <ul>
+        	<li> 
+        		<label for="exampleInputEmail1">Committed Amount</label>
+        		<form:input type="text" class="form-control" name="committedAmount" path="committedAmount" />
+        	</li>
+        	<li>
+        		<label for="exampleInputEmail1">Uncommitted Amount</label>
+        		<form:input type="text" class="form-control" name="uncommittedAmount" path="uncommittedAmount" />
+        	</li>
+        </ul>
       </div>
       <div class="form-group">
         <label for="exampleInputFile">File input</label>

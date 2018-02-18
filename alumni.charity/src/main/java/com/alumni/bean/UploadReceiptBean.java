@@ -5,7 +5,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadReceiptBean {
 	
 	private MultipartFile multipartFile;
-	private String amount;
+	private String totalAmount;
+	private String committedAmount;
+	private String uncommittedAmount;
 	
 	public MultipartFile getMultipartFile() {
 		return multipartFile;
@@ -13,11 +15,23 @@ public class UploadReceiptBean {
 	public void setMultipartFile(MultipartFile multipartFile) {
 		this.multipartFile = multipartFile;
 	}
-	public String getAmount() {
-		return amount;
+	public String getTotalAmount() {
+		return totalAmount;
 	}
-	public void setAmount(String amount) {
-		this.amount = amount;
+	public void setTotalAmount(String totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+	public String getCommittedAmount() {
+		return committedAmount;
+	}
+	public void setCommittedAmount(String committedAmount) {
+		this.committedAmount = committedAmount;
+	}
+	public String getUncommittedAmount() {
+		return uncommittedAmount;
+	}
+	public void setUncommittedAmount(String uncommittedAmount) {
+		this.uncommittedAmount = uncommittedAmount;
 	}
 	
 }

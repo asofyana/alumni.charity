@@ -12,6 +12,7 @@ import com.alumni.bean.RequestPaymentBean;
 import com.alumni.dao.PaymentDao;
 import com.alumni.dao.RequestDao;
 import com.alumni.entity.Payment;
+import com.alumni.entity.PaymentAllocation;
 import com.alumni.entity.PaymentRequest;
 import com.alumni.entity.PaymentType;
 import com.alumni.entity.User;
@@ -112,11 +113,17 @@ public class RequestServiceImpl implements RequestService {
 			payment.setCreatedBy(String.valueOf(user.getId()));
 			payment.setCreatedDate(new Date());
 			payment.setAmount(paymentRequest.getAmount());
-			payment.setPaymentType(pymType);
+			payment.setCashFlow(Constants.CASH_OUT);
 			payment.setStatus(Constants.PaymentStatus.NEW.toString());
 			payment.setUser(user);
 			paymentDao.savePayment(payment);
-			
+
+			PaymentAllocation paymentAlloc = new PaymentAllocation();
+			paymentAlloc.setPayment(payment);
+			paymentAlloc.setAllocationType(Constants.PaymentAllocation.OBJECT_DONATION.toString());
+			paymentAlloc.setAmount(paymentRequest.getAmount());
+			paymentDao.savePaymentAllocation(paymentAlloc);
+
 			paymentRequest.setStatus(Constants.RequestPaymentStatus.APPROVED.toString());
 			
 		}

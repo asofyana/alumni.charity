@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.alumni.entity.MemberContribution;
 import com.alumni.entity.Payment;
+import com.alumni.entity.PaymentAllocation;
 
 public interface PaymentDao {
 	public void savePayment(Payment payment);
@@ -16,4 +17,6 @@ public interface PaymentDao {
 	public void saveMemberContribution(MemberContribution memberContribution);
 	public void updateMemberContribution(MemberContribution memberContribution);
 	public List<MemberContribution> getContributionListByUserId(int userId);
+	public List<PaymentAllocation> getPaymentAllocationList(int paymentId);
+	public void savePaymentAllocation(PaymentAllocation paymentAllocation);
 }

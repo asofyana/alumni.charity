@@ -6,14 +6,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alumni.controller.MemberController;
 import com.alumni.dao.PaymentDao;
 import com.alumni.entity.MemberContribution;
 import com.alumni.entity.Payment;
+import com.alumni.entity.PaymentAllocation;
 import com.alumni.entity.PaymentType;
 import com.alumni.entity.User;
 import com.alumni.exception.BusinessProcessException;
@@ -36,10 +40,14 @@ public class PaymentServiceImpl implements PaymentService {
 	@Value("${initial.month}")
 	private String initialMonth;
 
+	private static final Logger logger = LoggerFactory.getLogger(PaymentServiceImpl.class);
+
 	@Override
-	public void savePayment(User user, double amount, MultipartFile multipartFile) throws BusinessProcessException {
+	public void savePayment(User user, double committedAmount, double uncommittedAmount, MultipartFile multipartFile) throws BusinessProcessException {
 		
 		try {
+			
+			double amount = committedAmount + uncommittedAmount;
 			
 			String fileExt = multipartFile.getOriginalFilename().substring(multipartFile.getOriginalFilename().length() - 3);
 			Date now = new Date();
@@ -48,19 +56,33 @@ public class PaymentServiceImpl implements PaymentService {
 			
 			fileService.uploadFile(fileName, multipartFile.getBytes());
 			
-			PaymentType pymType = new PaymentType();
-			pymType.setPaymentType(Constants.PaymentType.MEMBER_MONTHLY.toString());
-			
 			Payment payment = new Payment();
 			payment.setCreatedBy(String.valueOf(user.getId()));
 			payment.setCreatedDate(now);
 			payment.setFileName(fileName);
 			payment.setAmount(amount);
-			payment.setPaymentType(pymType);
+			payment.setCashFlow(Constants.CASH_IN);
 			payment.setStatus(Constants.PaymentStatus.NEW.toString());
 			payment.setUser(user);
 			
 			paymentDao.savePayment(payment);
+			
+			// Set allocation
+			if (committedAmount > 0) {
+				PaymentAllocation paymentAlloc = new PaymentAllocation();
+				paymentAlloc.setPayment(payment);
+				paymentAlloc.setAllocationType(Constants.PaymentAllocation.COMMITTED_DONATION.toString());
+				paymentAlloc.setAmount(committedAmount);
+				paymentDao.savePaymentAllocation(paymentAlloc);
+			}
+			if (uncommittedAmount > 0) {
+				PaymentAllocation paymentAlloc = new PaymentAllocation();
+				paymentAlloc.setPayment(payment);
+				paymentAlloc.setAllocationType(Constants.PaymentAllocation.UNCOMMITTED_DONATION.toString());
+				paymentAlloc.setAmount(uncommittedAmount);
+				paymentDao.savePaymentAllocation(paymentAlloc);
+			}
+
 
 		} catch (Exception e) {
 			throw new BusinessProcessException(e.getMessage());
@@ -87,12 +109,25 @@ public class PaymentServiceImpl implements PaymentService {
 	public void verifyPayment(Payment payment, User user) throws Exception {
 		payment.setStatus(Constants.PaymentStatus.VERIFIED.toString());
 		paymentDao.updatePayment(payment);
-		if (Constants.PaymentType.MEMBER_MONTHLY.toString().equals(payment.getPaymentType())) {
+		
+		double monthlyContributionAmount = 0;
+		List<PaymentAllocation> allocationList = paymentDao.getPaymentAllocationList(payment.getId());
+		logger.debug("list size:" + allocationList.size());
+		for (PaymentAllocation alloc : allocationList) {
+			logger.debug("----------------");
+			logger.debug("alloc.getAllocationType():" + alloc.getAllocationType());
+			logger.debug("alloc.getAmount():" + alloc.getAmount());
+			if (alloc.getAllocationType().equals(Constants.PaymentAllocation.COMMITTED_DONATION.toString())) {
+				monthlyContributionAmount = alloc.getAmount();
+			}
+		}
+		
+		if (monthlyContributionAmount > 0) {
 			double monthlyContribution = Double.parseDouble(monthlyContributionStr);
 			MemberContribution lastContr = paymentDao.getLastContributionMonth(payment.getUser().getId());
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			Date startPayment = df.parse(initialMonth);
-			double amount = payment.getAmount();
+			double amount = monthlyContributionAmount;
 			if (lastContr != null) {
 				double tmpPaid = monthlyContribution - lastContr.getAmount();
 				if (amount < tmpPaid) {

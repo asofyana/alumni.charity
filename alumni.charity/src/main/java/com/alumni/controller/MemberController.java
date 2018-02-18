@@ -81,10 +81,53 @@ public class MemberController extends BaseController {
 		try {
 			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
 			modelAndView = createModelAndViewInstance(userBean, ROLE, "UploadReceipt");
+			double totalAmount = 0;
+			double committedAmount = 0;
+			double uncommittedAmount = 0;
 			
-			paymentService.savePayment(userBean.getUser(), Double.parseDouble(uploadReceiptBean.getAmount()), uploadReceiptBean.getMultipartFile());
+			try {
+				totalAmount = Double.parseDouble(uploadReceiptBean.getTotalAmount());
+			} catch (Exception e) {
+			}
+
+			try {
+				committedAmount = Double.parseDouble(uploadReceiptBean.getCommittedAmount());
+			} catch (Exception e) {
+			}
+
+			try {
+				uncommittedAmount = Double.parseDouble(uploadReceiptBean.getUncommittedAmount());
+			} catch (Exception e) {
+			}
 			
-			modelAndView.addObject("message", "Your file is uploaded successfully");
+			logger.debug("totalAmount: " + totalAmount);
+			logger.debug("committedAmount: " + committedAmount);
+			logger.debug("uncommittedAmount: " + uncommittedAmount);
+			
+			boolean isValid = true;
+			String message = "";
+
+			if (totalAmount == 0) {
+				isValid = false;
+				message = "Please fill amount";
+			}
+			
+			if (isValid && (totalAmount != (committedAmount + uncommittedAmount))) {
+				isValid = false;
+				message = "Total amount must be equal to committed + uncommitted amount";
+			}
+			
+			if (isValid && ((uploadReceiptBean.getMultipartFile() == null) || (uploadReceiptBean.getMultipartFile().getSize() == 0))) {
+				isValid = false;
+				message = "Please upload receipt";
+			}
+
+			if (isValid) {
+				paymentService.savePayment(userBean.getUser(), committedAmount, uncommittedAmount, uploadReceiptBean.getMultipartFile());
+				message = "Your file is uploaded successfully";
+			}
+			
+			modelAndView.addObject("message", message);
 			
 		} catch (InvalidSessionException e) {
 			CommonUtil.logInternalError(logger, e);

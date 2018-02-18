@@ -24,8 +24,8 @@ method="post">
 		<dd>${payment.user.fullName}</dd>
 		<dt>Amount</dt>
 		<dd><fmt:formatNumber value="${payment.amount}" type="number"/></dd>
-		<dt>Payment Type</dt>
-		<dd>${payment.paymentType}</dd>
+		<dt>Cash in/out</dt>
+		<dd>${payment.cashFlow}</dd>
 	</dl>
 
 	<c:if test="${not empty base64Img}">

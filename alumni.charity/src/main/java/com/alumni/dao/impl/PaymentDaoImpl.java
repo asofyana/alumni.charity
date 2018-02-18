@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alumni.dao.PaymentDao;
 import com.alumni.entity.MemberContribution;
 import com.alumni.entity.Payment;
+import com.alumni.entity.PaymentAllocation;
 
 @Repository
 @Transactional
@@ -112,6 +113,20 @@ public class PaymentDaoImpl extends BaseDao implements PaymentDao {
 		criteria.put("user.id", userId);
 		
 		return (List<MemberContribution>) (List<?>) getObjectsByCriteria(MemberContribution.class, criteria);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PaymentAllocation> getPaymentAllocationList(int paymentId) {
+		Map<String, Object> criteria = new HashMap<String, Object>();
+		criteria.put("payment.id", paymentId);
+		
+		return (List<PaymentAllocation>) (List<?>) getObjectsByCriteria(PaymentAllocation.class, criteria);
+	}
+
+	@Override
+	public void savePaymentAllocation(PaymentAllocation paymentAllocation) {
+		saveObject(paymentAllocation);
 	}
 
 }

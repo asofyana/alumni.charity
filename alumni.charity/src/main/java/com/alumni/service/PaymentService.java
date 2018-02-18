@@ -11,7 +11,7 @@ import com.alumni.entity.User;
 import com.alumni.exception.BusinessProcessException;
 
 public interface PaymentService {
-	public void savePayment(User user, double amount, MultipartFile multipartFile) throws BusinessProcessException;
+	public void savePayment(User user, double committedAmount, double uncommittedAmount, MultipartFile multipartFile) throws BusinessProcessException;
 	public List<Payment> getPaymentByStatus(String status);
 	public List<Payment> getPaymentByStatus(String status, Date startDate, Date endDate);
 	public Payment getPaymentById(int id);

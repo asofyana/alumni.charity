@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,16 +19,16 @@ public class Payment {
 	private int id;
 	private User user;
 	private String name;
-	private PaymentType paymentType;
 	private String fileName;
 	private String status;
+	private String cashFlow;
 	private Date createdDate;
 	private String createdBy;
 	private Date updatedDate;
 	private String updatedBy;
 	private double amount;
 	
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")
 	public int getId() {
 		return id;
@@ -52,15 +54,6 @@ public class Payment {
 		this.name = name;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="PAYMENT_TYPE", referencedColumnName="PAYMENT_TYPE")
-	public PaymentType getPaymentType() {
-		return paymentType;
-	}
-	public void setPaymentType(PaymentType paymentType) {
-		this.paymentType = paymentType;
-	}
-
 	@Column(name="FILE_NAME")
 	public String getFileName() {
 		return fileName;
@@ -77,6 +70,14 @@ public class Payment {
 		this.status = status;
 	}
 
+	@Column(name="CASH_FLOW")
+	public String getCashFlow() {
+		return cashFlow;
+	}
+	public void setCashFlow(String cashFlow) {
+		this.cashFlow = cashFlow;
+	}
+	
 	@Column(name="CREATED_DATE")
 	public Date getCreatedDate() {
 		return createdDate;

@@ -18,7 +18,7 @@
                   <th>Date</th>
                   <th>Name</th>
                   <th>Amount</th>
-                  <th>Payment Type</th>
+                  <th>Cash in/out</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,7 +28,7 @@
                   <td><a href="view-payment-detail?id=${payment.id}">${payment.createdDate}</a></td>
                   <td>${payment.user.fullName}</td>
                   <td><fmt:formatNumber value="${payment.amount}" type="number"/></td>
-                  <td>${payment.paymentType.paymentType}</td>
+                  <td>${payment.cashFlow}</td>
                 </tr>
 			</c:forEach>
 

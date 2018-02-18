@@ -67,8 +67,7 @@
                   <th>Date</th>
                   <th>Name</th>
                   <th>Amount</th>
-                  <th>Payment Type</th>
-                  <th>Debet/Credit</th>
+                  <th>Cash in/out</th>
                   <th>Status</th>
                 </tr>
                 </thead>
@@ -79,8 +78,7 @@
                   <td>${payment.createdDate}</td>
                   <td>${payment.user.fullName}</td>
                   <td><fmt:formatNumber value="${payment.amount}" type="number"/></td>
-                  <td>${payment.paymentType.paymentType}</td>
-                  <td>${payment.paymentType.flowType}</td>
+                  <td>${payment.cashFlow}</td>
                   <td>${payment.status}</td>
                 </tr>
 			</c:forEach>
