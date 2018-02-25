@@ -14,7 +14,8 @@
         <li><a href="upload-receipt"><i class="fa fa-link"></i> <span>Upload receipt</span></a></li>
         <li><a href="view-contribution"><i class="fa fa-link"></i> <span>View committed donation</span></a></li>
         <li><a href="request-payment"><i class="fa fa-link"></i> <span>Distribution Request</span></a></li>
-        <li><a href="payment-summary"><i class="fa fa-link"></i> <span>Payment Summary</span></a></li>
+        <li><a href="payment-summary"><i class="fa fa-link"></i> <span>Cash Summary</span></a></li>
+        <li><a href="member-payment-list"><i class="fa fa-link"></i> <span>Payment List</span></a></li>
 
 <!-- 
 	<c:if test="${not empty ADMIN}">

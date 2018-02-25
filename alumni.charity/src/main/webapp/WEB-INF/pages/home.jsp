@@ -21,7 +21,11 @@
 	 </button>
 	<br><br>
 	 <button type="button" class="btn button-home" onclick="window.location.href='payment-summary'">
-	 Payment Summary
+	 Cash Summary
+	 </button>
+	<br><br>
+	 <button type="button" class="btn button-home" onclick="window.location.href='member-payment-list'">
+	 Payment List
 	 </button>
  
  <c:if test="${not empty TREASURY}">

@@ -181,4 +181,9 @@ public class PaymentServiceImpl implements PaymentService {
 		return paymentDao.getTotalAllocationAmount(allocationType);
 	}
 
+	@Override
+	public List<Payment> getPaymentByUser(int userId) {
+		return paymentDao.getPaymentByUser(userId);
+	}
+
 }

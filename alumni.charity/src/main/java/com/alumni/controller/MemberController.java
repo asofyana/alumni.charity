@@ -21,6 +21,7 @@ import com.alumni.bean.RequestPaymentBean;
 import com.alumni.bean.UploadReceiptBean;
 import com.alumni.bean.UserBean;
 import com.alumni.entity.MemberContribution;
+import com.alumni.entity.Payment;
 import com.alumni.entity.User;
 import com.alumni.exception.BusinessProcessException;
 import com.alumni.exception.InvalidSessionException;
@@ -355,6 +356,32 @@ public class MemberController extends BaseController {
 			modelAndView.addObject("uncommittedDonation", uncommittedDonation);
 			modelAndView.addObject("distribution", distribution);
 			modelAndView.addObject("totalAmount", totalAmount);
+			
+		} catch (InvalidSessionException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("redirect:/login");
+		} catch (NotAuthorizedException e) {
+			modelAndView = new ModelAndView("NotAuthorized");
+		} catch (Exception e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("Error500");
+		}
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/member-payment-list", method = RequestMethod.GET)
+	public ModelAndView viewPaymentList(HttpServletRequest request, 			
+			HttpServletResponse response) {
+		
+		ModelAndView modelAndView = null;
+		try {
+			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
+			modelAndView = createModelAndViewInstance(userBean, ROLE, "MemberPaymentList");
+
+			List<Payment> paymentList = paymentService.getPaymentByUser(userBean.getUser().getId());
+			
+			modelAndView.addObject("paymentList",paymentList);
 			
 		} catch (InvalidSessionException e) {
 			CommonUtil.logInternalError(logger, e);

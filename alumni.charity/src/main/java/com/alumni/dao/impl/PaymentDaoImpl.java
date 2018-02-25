@@ -9,6 +9,7 @@ import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
@@ -139,6 +140,16 @@ public class PaymentDaoImpl extends BaseDao implements PaymentDao {
 		} else {
 			return 0;
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Payment> getPaymentByUser(int userId) {
+		Criteria crit = getCurrentSession().createCriteria(Payment.class);
+		crit.add(Restrictions.eq("user.id", userId));
+		crit.addOrder(Order.desc("createdDate"));
+		
+		return (List<Payment>) (List<?>) crit.list();
 	}
 
 }

@@ -91,4 +91,10 @@
 		<put-attribute name="content" value="/WEB-INF/pages/payment-summary.jsp" />
 	</definition>
 
+	<definition name="MemberPaymentList" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/payment-list-by-member.jsp" />
+	</definition>
+
+
 </tiles-definitions>

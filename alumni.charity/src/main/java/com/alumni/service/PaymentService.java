@@ -7,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alumni.entity.MemberContribution;
 import com.alumni.entity.Payment;
-import com.alumni.entity.PaymentAllocation;
 import com.alumni.entity.User;
 import com.alumni.exception.BusinessProcessException;
 
@@ -19,4 +18,5 @@ public interface PaymentService {
 	public void verifyPayment(Payment payment, User user) throws Exception;
 	public List<MemberContribution> getContributionListByUserId(int userId);
 	public double getTotalAllocationAmount(String allocationType);
+	public List<Payment> getPaymentByUser(int userId);
 }
