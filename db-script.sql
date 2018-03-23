@@ -12,6 +12,10 @@ mobile_number varchar(15),
 grade1 varchar(5),
 grade2 varchar(5),
 grade3 varchar(5),
+job_title varchar(100),
+office_name varchar(100),
+office_address varchar(255),
+status varchar(20),
 last_access_date datetime,
 created_date datetime,
 created_by varchar(50),
@@ -35,11 +39,13 @@ role_id int
 create table t_payment(
 id INT NOT NULL AUTO_INCREMENT key, 
 user_id int,
+request_id int,
 name varchar(50),
 payment_type varchar(20),
 amount double,
 file_name varchar(20),
 status varchar(20),
+cash_flow varchar(5),
 created_date datetime,
 created_by varchar(50),
 updated_date datetime,
@@ -73,10 +79,21 @@ updated_date datetime,
 updated_by varchar(50)
 );
 
+--to be dropped
 create table t_payment_type(
 payment_type varchar(20),
 flow_type  varchar(10)
 )
+
+create table t_payment_allocation(
+id INT NOT NULL AUTO_INCREMENT key,
+payment_id int,
+allocation_type  varchar(30),
+amount double
+);
+
+alter table t_payment add cash_flow varchar(5);
+
 
 
 ----------
