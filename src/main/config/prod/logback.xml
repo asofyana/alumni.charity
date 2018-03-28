@@ -31,7 +31,9 @@
     <logger name="org.apache.tiles" level="ERROR"/>
     
      <logger name="com.alumni" level="DEBUG">
+		<!--
        	<appender-ref ref="APPLOGFILE"/>
+		-->
        	<appender-ref ref="STDOUT"/>
      </logger>
 
