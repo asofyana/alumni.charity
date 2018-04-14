@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService {
 		
 		UserBean userBean = null;
 		User user = userDao.getUserByEmail(email);
+		boolean loginSuccess = false;
 		if (user != null) {
 			logger.debug("User found");
 			
@@ -55,6 +56,7 @@ public class UserServiceImpl implements UserService {
 						user.setLastAccessDate(new Date());
 						user.setUpdatedBy(Constants.SYSTEM);
 						userDao.updateUser(user);
+						loginSuccess = true;
 						
 					} catch (Exception e) {
 						logger.error(e.getMessage());
@@ -67,18 +69,21 @@ public class UserServiceImpl implements UserService {
 						user.setLastAccessDate(new Date());
 						user.setUpdatedBy(Constants.SYSTEM);
 						userDao.updateUser(user);
+						loginSuccess = true;
 					}
 				} catch (Exception e) {
 					logger.error(e.getMessage());
 				}
 			}
 			
-			userBean = new UserBean();
-			userBean.setUser(user);
-
-			// Get user role list
-			List<UserRole> userRoleList = userDao.getRoleListByUserId(user.getId());
-			userBean.setRoleList(userRoleList);
+			if (loginSuccess) {
+				userBean = new UserBean();
+				userBean.setUser(user);
+	
+				// Get user role list
+				List<UserRole> userRoleList = userDao.getRoleListByUserId(user.getId());
+				userBean.setRoleList(userRoleList);
+			}
 			
 		} else {
 			logger.debug("User not found");

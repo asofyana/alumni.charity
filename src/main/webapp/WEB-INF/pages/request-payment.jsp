@@ -12,7 +12,7 @@ method="post" modelAttribute="requestPaymentBean">
 
     <div class="box-body">
 	    <div class="box-header with-border">
-	      <h3 class="box-title">Object Donation Request</h3>
+	      <h3 class="box-title">Request Penyaluran Dana</h3>
 	    </div>
     </div>
 
@@ -22,22 +22,22 @@ method="post" modelAttribute="requestPaymentBean">
 		
     <div class="box-body" style="width:300px;">
       <div class="form-group">
-        <label for="exampleInputEmail1">Name</label>
+        <label for="exampleInputEmail1">Nama</label>
         <form:input type="text" class="form-control" name="title" path="title" />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Type</label>
+        <label for="exampleInputEmail1">Tipe</label>
         <form:select class="form-control" name="type" path="type" >
-        	<option value="Education">Education</option>
-        	<option value="Health">Health</option>
+        	<option value="Pendidikan">Pendidikan</option>
+        	<option value="Kesehatan">Kesehatan</option>
         </form:select>
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Amount</label>
+        <label for="exampleInputEmail1">Jumlah</label>
         <form:input class="form-control" name="amount" path="amount" />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Description</label>
+        <label for="exampleInputEmail1">Keterangan</label>
         <form:textarea class="form-control" name="description" path="description" />
       </div>
     </div>

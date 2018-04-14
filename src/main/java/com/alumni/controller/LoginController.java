@@ -66,7 +66,7 @@ public class LoginController extends BaseController {
 			}
 		} else {
 			modelAndView.setViewName("Login");
-			modelAndView.addObject("message", "invalid user id or password");
+			modelAndView.addObject("message", "user id atau password anda salah");
 		}
 	
 		return modelAndView;

@@ -6,7 +6,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<h3 class="box-title">Member Detail</h3>
+<h3 class="box-title">Detail Anggota</h3>
 
 <form:form action="${contextPath}/member-approval-action" id="form1" enctype="multipart/form-data"  
 method="post" >
@@ -18,32 +18,32 @@ method="post" >
 		
 	<dl class="dl-horizontal">
 		<c:if test="${not empty approveButton}">
-		<dt>Request Date</dt>
+		<dt>Tanggal Request</dt>
 		<dd>${user.createdDate}</dd>
 		</c:if>
-		<dt>Name</dt>
+		<dt>Nam</dt>
 		<dd>${user.fullName}</dd>
 		<dt>Email</dt>
 		<dd>${user.email}</dd>
-		<dt>Address</dt>
+		<dt>Alamat</dt>
 		<dd>${user.address}</dd>
-		<dt>City</dt>
+		<dt>Kota</dt>
 		<dd>${user.city}</dd>
-		<dt>Phone</dt>
+		<dt>No Telepon</dt>
 		<dd>${user.homePhoneNumber}</dd>
-		<dt>Mobile</dt>
+		<dt>No Handphone</dt>
 		<dd>${user.mobileNumber}</dd>
-		<dt>Profession</dt>
+		<dt>Pekerjaan</dt>
 		<dd>${user.jobTitle}</dd>
-		<dt>Office Name</dt>
+		<dt>Nama Kantor</dt>
 		<dd>${user.officeName}</dd>
-		<dt>Office Address</dt>
+		<dt>Alamat Kantor</dt>
 		<dd>${user.officeAddress}</dd>
-		<dt>Grade 1</dt>
+		<dt>Kelas 1</dt>
 		<dd>${user.grade1}</dd>
-		<dt>Grade 2</dt>
+		<dt>Kelas 2</dt>
 		<dd>${user.grade2}</dd>
-		<dt>Grade 3</dt>
+		<dt>Kelas 3</dt>
 		<dd>${user.grade3}</dd>
 	</dl>
 

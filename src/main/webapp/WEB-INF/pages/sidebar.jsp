@@ -10,12 +10,13 @@
         <!-- 
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>ZZZZZZZZZ</span></a></li>
          -->
-        <li><a href="member-search"><i class="fa fa-link"></i> <span>Search Alumni</span></a></li>
-        <li><a href="upload-receipt"><i class="fa fa-link"></i> <span>Upload receipt</span></a></li>
-        <li><a href="view-contribution"><i class="fa fa-link"></i> <span>View committed donation</span></a></li>
-        <li><a href="request-payment"><i class="fa fa-link"></i> <span>Distribution Request</span></a></li>
-        <li><a href="payment-summary"><i class="fa fa-link"></i> <span>Cash Summary</span></a></li>
-        <li><a href="member-payment-list"><i class="fa fa-link"></i> <span>Payment List</span></a></li>
+        <li><a href="member-search"><i class="fa fa-link"></i> <span>Cari Alumni</span></a></li>
+        <li><a href="upload-receipt"><i class="fa fa-link"></i> <span>Upload Bukti Transfer</span></a></li>
+        <li><a href="view-contribution"><i class="fa fa-link"></i> <span>Sumbangan Wajib</span></a></li>
+        <li><a href="request-payment"><i class="fa fa-link"></i> <span>Permintaan Penyaluran</span></a></li>
+        <li><a href="payment-summary"><i class="fa fa-link"></i> <span>Posisi Kas</span></a></li>
+        <li><a href="member-payment-list"><i class="fa fa-link"></i> <span>Daftar Pembayaran</span></a></li>
+        <li><a href="change-password"><i class="fa fa-link"></i> <span>Ganti Password</span></a></li>
 
 <!-- 
 	<c:if test="${not empty ADMIN}">
@@ -39,21 +40,21 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="search-payment">Search Payment</a></li>
-            <li><a href="view-pending-payment">Payment Verification/Request</a></li>
+            <li><a href="search-payment">Cari Pembayaran</a></li>
+            <li><a href="view-pending-payment">Verifikasi/Permintaan Pembayaran</a></li>
           </ul>
         </li>
     </c:if>
 
 	<c:if test="${not empty APPROVER}">
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Verification</span>
+          <a href="#"><i class="fa fa-link"></i> <span>Verifikasi</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="view-request-list">Object Donation Requests</a></li>
+            <li><a href="view-request-list">Verifikasi Permintaan Penyaluran</a></li>
           </ul>
         </li>
 	</c:if>

@@ -5,7 +5,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-Upload Receipt
+Upload Bukti Transfer
 
 <form:form action="${contextPath}/upload-receipt-action" id="form-upload" enctype="multipart/form-data"  
 method="post" modelAttribute="uploadReceiptBean">
@@ -13,16 +13,16 @@ method="post" modelAttribute="uploadReceiptBean">
 
     <div class="box-body" style="width:300px;">
       <div class="form-group">
-        <label for="exampleInputEmail1">Total Amount</label>
+        <label for="exampleInputEmail1">Total</label>
         <form:input type="text" class="form-control" name="totalAmount" path="totalAmount" />
         <br>
         <ul>
         	<li> 
-        		<label for="exampleInputEmail1">Committed Amount</label>
+        		<label for="exampleInputEmail1">Sumbangan Wajib</label>
         		<form:input type="text" class="form-control" name="committedAmount" path="committedAmount" />
         	</li>
         	<li>
-        		<label for="exampleInputEmail1">Uncommitted Amount</label>
+        		<label for="exampleInputEmail1">Sumbangan Sukarela</label>
         		<form:input type="text" class="form-control" name="uncommittedAmount" path="uncommittedAmount" />
         	</li>
         </ul>

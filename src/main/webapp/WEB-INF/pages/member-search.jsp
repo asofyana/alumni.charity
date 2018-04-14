@@ -5,29 +5,29 @@
 
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">Search Alumni</h3>
+          <h3 class="box-title">Cari Alumni</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
   <form:form action="member-search-action" method="POST" modelAttribute="user">
           <div class="box-body">
             <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+              <label for="inputEmail3" class="col-sm-2 control-label">Nama</label>
               <div class="col-sm-10">
                  <form:input type="text" name="strName" class="form-control" id="name" path="fullName" />
               </div>
             </div>
             <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">City Address</label>
+              <label for="inputEmail3" class="col-sm-2 control-label">Kota</label>
               <div class="col-sm-10">
                  <form:input type="text" name="strCity" class="form-control" id="city" path="city" />
               </div>
             </div>
             <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Grade 1</label>
+              <label for="inputPassword3" class="col-sm-2 control-label">Kelas 1</label>
               <div class="col-sm-10">
                 <form:select name="grade1" class="form-control select2" path="grade1">
-                	<option value="">ALL</option>
+                	<option value="">Semua</option>
                 	<option value="A">1A</option>
                 	<option value="B">1B</option>
                 	<option value="C">1C</option>
@@ -38,10 +38,10 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Grade 2</label>
+              <label for="inputPassword3" class="col-sm-2 control-label">Kelas 2</label>
               <div class="col-sm-10">
                 <form:select name="grade2" class="form-control select2" path="grade2">
-                	<option value="">ALL</option>
+                	<option value="">Semua</option>
                 	<option value="A">2A</option>
                 	<option value="B">2B</option>
                 	<option value="C">2C</option>
@@ -52,10 +52,10 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Grade 3</label>
+              <label for="inputPassword3" class="col-sm-2 control-label">Kelas 3</label>
               <div class="col-sm-10">
                 <form:select name="grade3" class="form-control select2" path="grade3">
-                	<option value="">ALL</option>
+                	<option value="">Semua</option>
                 	<option value="A">3A</option>
                 	<option value="B">3B</option>
                 	<option value="C">3C</option>
@@ -79,18 +79,18 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Search Result</h3>
+              <h3 class="box-title">Hasil Pencarian</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>City Address</th>
-                  <th>Grade 1</th>
-                  <th>Grade 2</th>
-                  <th>Grade 3</th>
+                  <th>Nama</th>
+                  <th>Kota</th>
+                  <th>Kelas 1</th>
+                  <th>Kelas 2</th>
+                  <th>Kelas 3</th>
                 </tr>
                 </thead>
                 <tbody>

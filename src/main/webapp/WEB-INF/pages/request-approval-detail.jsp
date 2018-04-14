@@ -6,7 +6,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<h3 class="box-title">Request Payment</h3>
+<h3 class="box-title">Request Penyaluran Dana</h3>
 
 <form:form action="${contextPath}/request-approval-action" id="form-request-payment" enctype="multipart/form-data"  
 method="post" >
@@ -17,15 +17,15 @@ method="post" >
 	<input type="hidden" name="id" value="${paymentRequest.id}">
 		
 	<dl class="dl-horizontal">
-		<dt>Request Date</dt>
+		<dt>Tanggal Request</dt>
 		<dd>${paymentRequest.createdDate}</dd>
-		<dt>Title</dt>
+		<dt>Nama</dt>
 		<dd>${paymentRequest.title}</dd>
-		<dt>Type</dt>
+		<dt>Tipe</dt>
 		<dd>${paymentRequest.type}</dd>
-		<dt>Amount</dt>
+		<dt>Jumlah</dt>
 		<dd><fmt:formatNumber value="${paymentRequest.amount}" type="number"/></dd>
-		<dt>Description</dt>
+		<dt>Keterangan</dt>
 		<dd>${paymentRequest.description}</dd>
 	</dl>
 

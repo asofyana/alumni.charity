@@ -8,16 +8,16 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Payment Verification</h3>
+              <h3 class="box-title">Verifikasi Pembayaran</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Name</th>
-                  <th>Amount</th>
+                  <th>Tanggal</th>
+                  <th>Nama</th>
+                  <th>Jumlah</th>
                   <th>Cash in/out</th>
                 </tr>
                 </thead>

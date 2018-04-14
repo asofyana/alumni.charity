@@ -35,9 +35,6 @@ public class PaymentServiceImpl implements PaymentService {
 	@Value("${monthly.contribution}")
 	private String monthlyContributionStr;
 
-	@Value("${initial.month}")
-	private String initialMonth;
-
 	private static final Logger logger = LoggerFactory.getLogger(PaymentServiceImpl.class);
 
 	@Override
@@ -123,8 +120,7 @@ public class PaymentServiceImpl implements PaymentService {
 		if (monthlyContributionAmount > 0) {
 			double monthlyContribution = Double.parseDouble(monthlyContributionStr);
 			MemberContribution lastContr = paymentDao.getLastContributionMonth(payment.getUser().getId());
-			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-			Date startPayment = df.parse(initialMonth);
+			Date startPayment = user.getCreatedDate();
 			double amount = monthlyContributionAmount;
 			if (lastContr != null) {
 				double tmpPaid = monthlyContribution - lastContr.getAmount();
@@ -143,6 +139,8 @@ public class PaymentServiceImpl implements PaymentService {
 				lastContr.setUpdatedBy(String.valueOf(user.getId()));
 				paymentDao.updateMemberContribution(lastContr);
 			}
+			
+			logger.debug("startPayment: " + startPayment);
 			
 			while (amount > 0) {
 				MemberContribution contr = new MemberContribution();

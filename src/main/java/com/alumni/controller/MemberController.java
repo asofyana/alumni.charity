@@ -110,22 +110,22 @@ public class MemberController extends BaseController {
 
 			if (totalAmount == 0) {
 				isValid = false;
-				message = "Please fill amount";
+				message = "Silahkan isi jumlah";
 			}
 			
 			if (isValid && (totalAmount != (committedAmount + uncommittedAmount))) {
 				isValid = false;
-				message = "Total amount must be equal to committed + uncommitted amount";
+				message = "Jumlah total harus sama dengan sumbangan sukarela + sumbangan wjib";
 			}
 			
 			if (isValid && ((uploadReceiptBean.getMultipartFile() == null) || (uploadReceiptBean.getMultipartFile().getSize() == 0))) {
 				isValid = false;
-				message = "Please upload receipt";
+				message = "Silahkan upload bukti transfer";
 			}
 
 			if (isValid) {
 				paymentService.savePayment(userBean.getUser(), committedAmount, uncommittedAmount, uploadReceiptBean.getMultipartFile());
-				message = "Your file is uploaded successfully";
+				message = "Upload bukti transfer sudah selesai";
 			}
 			
 			modelAndView.addObject("message", message);
@@ -209,7 +209,7 @@ public class MemberController extends BaseController {
 			
 			requestService.saveRequest(requestPaymentBean, userBean.getUser());
 			
-			modelAndView.addObject("message", "Your request is saved successfully");
+			modelAndView.addObject("message", "Permintaan anda sudah disubmit");
 			
 		} catch (InvalidSessionException e) {
 			CommonUtil.logInternalError(logger, e);
@@ -246,7 +246,7 @@ public class MemberController extends BaseController {
 		
 		try {
 			userService.saveNewUser(registrationBean);
-			modelAndView.addObject("message", "Your data is saved successfuly. Please login after your registration is approved");
+			modelAndView.addObject("message", "Registrasi berhasil. Silahkan tunggu sampai proses registrasi disetujui");
 		} catch (BusinessProcessException e) {
 			modelAndView.addObject("message", e.getMessage());
 		}
@@ -396,4 +396,87 @@ public class MemberController extends BaseController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/change-password", method = RequestMethod.GET)
+	public ModelAndView memberChangePassword(HttpServletRequest request, 			
+			HttpServletResponse response,
+			@ModelAttribute("registrationBean") RegistrationBean registrationBean,
+			BindingResult result) {
+		
+		ModelAndView modelAndView = null;
+
+		try {
+			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
+			modelAndView = createModelAndViewInstance(userBean, ROLE, "MemberChangePassword");
+			
+		} catch (InvalidSessionException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("redirect:/login");
+		} catch (NotAuthorizedException e) {
+			modelAndView = new ModelAndView("NotAuthorized");
+		} catch (Exception e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("Error500");
+		}
+
+		return modelAndView;
+
+	}
+	
+	@RequestMapping(value = "/change-password-action", method = RequestMethod.POST)
+	public ModelAndView memberChangePasswordAction(HttpServletRequest request, 			
+			HttpServletResponse response,
+			@ModelAttribute("registrationBean") RegistrationBean registrationBean,
+			BindingResult result) {
+		
+		ModelAndView modelAndView = null;
+
+		try {
+			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
+			modelAndView = createModelAndViewInstance(userBean, ROLE, "MemberChangePassword");
+			
+			String oldPassword = request.getParameter("old-password") == null ? "" : request.getParameter("old-password");
+			String newPassword = request.getParameter("new-password") == null ? "" : request.getParameter("new-password");
+			String confirmPassword = request.getParameter("confirm-password") == null ? "" : request.getParameter("confirm-password");
+			
+			String message = null;
+			
+			String hashPassword = CommonUtil.hashPassword(oldPassword, userBean.getUser().getSalt());
+			
+			if (hashPassword.equals(userBean.getUser().getPassword())) {
+				
+				if ((newPassword == "") || (confirmPassword == "")) {
+					message = "Silahkan masukkan password yang baru";
+				} else {
+					if (newPassword.equals(confirmPassword)) {
+						String newHashPassword = CommonUtil.hashPassword(newPassword, userBean.getUser().getSalt());
+						userBean.getUser().setPassword(newHashPassword);
+						userService.updateUser(userBean.getUser());
+						request.getSession().setAttribute(Constants.SESS_USER, userBean);
+						message = "Password anda sudah berubah";
+					} else {
+						message = "Konfirmasi password harus sama dengan password baru";
+					}
+				}
+				
+			} else {
+				message = "ERROR: Password lama anda salah";
+			}
+			
+			modelAndView.addObject("message", message);
+			
+		} catch (InvalidSessionException e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("redirect:/login");
+		} catch (NotAuthorizedException e) {
+			modelAndView = new ModelAndView("NotAuthorized");
+		} catch (Exception e) {
+			CommonUtil.logInternalError(logger, e);
+			modelAndView = new ModelAndView("Error500");
+		}
+
+		return modelAndView;
+
+	}
+	
+	
 }

@@ -7,11 +7,11 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<c:if test="${not empty payment.paymentRequest}">
-		<h3 class="box-title">Payment Request</h3>
+		<h3 class="box-title">Request Pembayaran</h3>
 	</c:if>
 	
 	<c:if test="${empty payment.paymentRequest}">
-		<h3 class="box-title">Payment Verification</h3>
+		<h3 class="box-title">Verifikasi Pembayaran</h3>
 	</c:if>
 
 
@@ -32,11 +32,11 @@ method="post">
 			<dt>Requester</dt>
 		</c:if>
 		<c:if test="${empty payment.paymentRequest}">
-			<dt>Name</dt>
+			<dt>Nama</dt>
 		</c:if>
 
 		<dd>${payment.user.fullName}</dd>
-		<dt>Amount</dt>
+		<dt>Jumlah</dt>
 		<dd><fmt:formatNumber value="${payment.amount}" type="number"/></dd>
 		<dt>Cash in/out</dt>
 		<dd>${payment.cashFlow}</dd>
@@ -44,15 +44,15 @@ method="post">
 
 	<c:if test="${not empty payment.paymentRequest}">
 			<dl class="dl-horizontal">
-		<dt>Request Date</dt>
+		<dt>Tanggal Request</dt>
 		<dd>${payment.paymentRequest.createdDate}</dd>
-		<dt>Title</dt>
+		<dt>Judul</dt>
 		<dd>${payment.paymentRequest.title}</dd>
-		<dt>Type</dt>
+		<dt>Tipe</dt>
 		<dd>${payment.paymentRequest.type}</dd>
-		<dt>Amount</dt>
+		<dt>Jumlah</dt>
 		<dd><fmt:formatNumber value="${payment.paymentRequest.amount}" type="number"/></dd>
-		<dt>Description</dt>
+		<dt>Keterangan</dt>
 		<dd>${payment.paymentRequest.description}</dd>
 	</dl>
 
@@ -61,7 +61,7 @@ method="post">
 	<c:if test="${not empty base64Img}">
 	    <div class="box-body" style="width:300px;">
 	      <div class="form-group">
-	        <label for="exampleInputEmail1">Transfer Proof</label>
+	        <label for="exampleInputEmail1">Bukti Transfer</label>
 	        <img title="" 
 				src="data:image/png;base64,${base64Img}" />
 	      </div>

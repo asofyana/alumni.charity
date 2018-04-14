@@ -5,43 +5,43 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 	 <button type="button" class="btn button-home" onclick="window.location.href='member-search'">
-	 <!-- <i class="fa fa-arrow-circle-right"></i> --> Search Alumni
+	 <!-- <i class="fa fa-arrow-circle-right"></i> --> Cari Alumni
 	 </button>
 	<br><br>
 	 <button type="button" class="btn button-home" onclick="window.location.href='upload-receipt'">
-	 Upload receipt
+	 Upload Bukti Transfer
 	 </button>
 	<br><br>
 	 <button type="button" class="btn button-home" onclick="window.location.href='view-contribution'">
-	 View committed donation
+	 Sumbangan Wajib
 	 </button>
 	<br><br>
 	 <button type="button" class="btn button-home" onclick="window.location.href='request-payment'">
-	 Distribution Request
+	 Permintaan Penyaluran
 	 </button>
 	<br><br>
 	 <button type="button" class="btn button-home" onclick="window.location.href='payment-summary'">
-	 Cash Summary
+	 Posisi Kas
 	 </button>
 	<br><br>
 	 <button type="button" class="btn button-home" onclick="window.location.href='member-payment-list'">
-	 Payment List
+	 Daftar Pembayaran
 	 </button>
  
  <c:if test="${not empty TREASURY}">
 	<br><br>
 	 <button type="button" class="btn button-home" onclick="window.location.href='search-payment'">
-	 Search Payment
+	 Cari Pembayaran
 	 </button>
 	<br><br>
 	 <button type="button" class="btn button-home" onclick="window.location.href='view-pending-payment'">
-	 Payment Verification/Request
+	 Verifikasi/Permintaan Pembayaran
 	 </button>
  </c:if>
  
   <c:if test="${not empty APPROVER}">
 	<br><br>
 	 <button type="button" class="btn button-home" onclick="window.location.href='view-request-list'">
-	 Object Donation Requests
+	 Verifikasi Permintaan Penyaluran
 	 </button>
  </c:if>

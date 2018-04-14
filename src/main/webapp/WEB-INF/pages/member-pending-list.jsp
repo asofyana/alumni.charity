@@ -17,9 +17,9 @@
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Address</th>
-                  <th>City</th>
-                  <th>Request Date</th>
+                  <th>Alamat</th>
+                  <th>Kota</th>
+                  <th>Tanggal Request</th>
                 </tr>
                 </thead>
                 <tbody>

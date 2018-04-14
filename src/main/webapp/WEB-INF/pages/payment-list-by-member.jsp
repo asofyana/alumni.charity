@@ -8,15 +8,15 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Payment List</h3>
+              <h3 class="box-title">Daftar Pembayaran</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Amount</th>
+                  <th>Tanggal</th>
+                  <th>Jumlah</th>
                 </tr>
                 </thead>
                 <tbody>

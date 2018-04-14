@@ -12,7 +12,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Registration</title>
+  <title>Registrasi</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -56,39 +56,39 @@ method="post" modelAttribute="registrationBean">
         <form:input type="password" class="form-control" name="password" path="password" />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Full Name</label>
+        <label for="exampleInputEmail1">Nama Lengkap</label>
         <form:input type="text" class="form-control" name="fullName" path="fullName" />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Address</label>
+        <label for="exampleInputEmail1">Alamat</label>
         <form:textarea class="form-control" name="address" path="address" />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">City</label>
+        <label for="exampleInputEmail1">Kota</label>
         <form:input type="text" class="form-control" name="city" path="city" />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Postal Code</label>
+        <label for="exampleInputEmail1">Kode Pos</label>
         <form:input type="text" class="form-control" name="postalCode" path="postalCode" />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Phone Number</label>
+        <label for="exampleInputEmail1">No Telepon</label>
         <form:input type="text" class="form-control" name="homePhoneNumber" path="homePhoneNumber" />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Mobile Number</label>
+        <label for="exampleInputEmail1">No Handphone</label>
         <form:input type="text" class="form-control" name="mobileNumber" path="mobileNumber" />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Grade 1</label>
+        <label for="exampleInputEmail1">Kelas 1</label>
         <form:input type="text" class="form-control" name="grade1" path="grade1" />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Grade 2</label>
+        <label for="exampleInputEmail1">Kelas 2</label>
         <form:input type="text" class="form-control" name="grade2" path="grade2" />
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Grade 3</label>
+        <label for="exampleInputEmail1">Kelas 3</label>
         <form:input type="text" class="form-control" name="grade3" path="grade3" />
       </div>
     </div>

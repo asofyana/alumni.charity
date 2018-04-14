@@ -21,13 +21,13 @@ method="post" >
     <div class="box-body">
 		
 			<dl class="dl-horizontal">
-				<dt>Name</dt>
+				<dt>Nama</dt>
 				<dd>${user.fullName}</dd>
 				<dt>Email</dt>
 				<dd>${user.email}</dd>
-				<dt>Address</dt>
+				<dt>Alamat</dt>
 				<dd>${user.address}</dd>
-				<dt>City</dt>
+				<dt>Kota</dt>
 				<dd>${user.city}</dd>
 			</dl>
 		

@@ -96,5 +96,10 @@
 		<put-attribute name="content" value="/WEB-INF/pages/payment-list-by-member.jsp" />
 	</definition>
 
+	<definition name="MemberChangePassword" template="/WEB-INF/pages/main_template.jsp">
+		<put-attribute name="sidebar" value="/WEB-INF/pages/sidebar.jsp" />
+		<put-attribute name="content" value="/WEB-INF/pages/member-change-password.jsp" />
+	</definition>
+
 
 </tiles-definitions>

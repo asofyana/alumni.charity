@@ -96,7 +96,7 @@ public class AdminController extends BaseController {
 		ModelAndView modelAndView = null;
 		try {
 			UserBean userBean = (UserBean) request.getSession().getAttribute(Constants.SESS_USER);
-			modelAndView = createModelAndViewInstance(userBean, ROLE, "ViewPendingMemberDetail");
+			modelAndView = createModelAndViewInstance(userBean, ROLE, "ViewMemberDetail");
 
 			String email = request.getParameter("email");
 

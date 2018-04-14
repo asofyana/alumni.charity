@@ -85,14 +85,12 @@ payment_type varchar(20),
 flow_type  varchar(10)
 )
 
-create table t_payment_allocation(
+create table T_PAYMENT_ALLOCATION(
 id INT NOT NULL AUTO_INCREMENT key,
 payment_id int,
 allocation_type  varchar(30),
 amount double
 );
-
-alter table t_payment add cash_flow varchar(5);
 
 
 
@@ -106,4 +104,9 @@ insert into t_payment_type(payment_type, flow_type) values ('MEMBER_MONTHLY', 'C
 insert into t_payment_type(payment_type, flow_type) values ('CHARITY_PAYMENT', 'DEBET');
 
 
-insert into t_user(email,password,full_name) values('asofyana@yahoo.com','password*1','Andri Sofyana')
+insert into t_user(email,password,full_name) values('asofyana@yahoo.com','password*1','Andri Sofyana');
+
+insert into T_USER_ROLE(user_id, role_id) values(1,1);
+insert into T_USER_ROLE(user_id, role_id) values(1,2);
+insert into T_USER_ROLE(user_id, role_id) values(1,3);
+insert into T_USER_ROLE(user_id, role_id) values(1,4);

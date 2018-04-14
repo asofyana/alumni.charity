@@ -5,14 +5,14 @@
 
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">Search Payment</h3>
+          <h3 class="box-title">Cari Pembayaran</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
   <form:form action="search-payment-action" method="POST">
           <div class="box-body">
             <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Start Date</label>
+              <label for="inputEmail3" class="col-sm-2 control-label">Dari Tanggal</label>
               <div class="col-sm-10">
                 <div class="input-group date">
                   <div class="input-group-addon">
@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">End Date</label>
+              <label for="inputEmail3" class="col-sm-2 control-label">Sampai Tanggal</label>
               <div class="col-sm-10">
                 <div class="input-group date">
                   <div class="input-group-addon">
@@ -64,9 +64,9 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Name</th>
-                  <th>Amount</th>
+                  <th>Tanggal</th>
+                  <th>Nama</th>
+                  <th>Jumlah</th>
                   <th>Cash in/out</th>
                   <th>Status</th>
                 </tr>

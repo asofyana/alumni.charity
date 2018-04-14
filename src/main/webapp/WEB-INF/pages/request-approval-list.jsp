@@ -15,11 +15,11 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Type</th>
-                  <th>Amount</th>
-                  <th>Description</th>
-                  <th>Request Date</th>
+                  <th>Nama</th>
+                  <th>Tipe</th>
+                  <th>Jumlah</th>
+                  <th>Keterangan</th>
+                  <th>Tanggal Request</th>
                 </tr>
                 </thead>
                 <tbody>

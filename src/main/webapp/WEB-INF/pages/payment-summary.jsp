@@ -14,17 +14,17 @@
 
 	<table>
 		<tr>
-			<td>Committed Donation (Cash In)</td>
+			<td>Sumbangan Wajib (Cash In)</td>
 			<td>:</td>
 			<td>&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${committedDonation}" type="number"/></td>
 		</tr>
 		<tr>
-			<td>Uncommitted Donation (Cash In) &nbsp;&nbsp;&nbsp;</td>
+			<td>Sumbangan Sukarela (Cash In) &nbsp;&nbsp;&nbsp;</td>
 			<td>:</td>
 			<td>&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${uncommittedDonation}" type="number"/></td>
 		</tr>
 		<tr>
-			<td>Distribution (Cash Out)</td>
+			<td>Penyaluran (Cash Out)</td>
 			<td>:</td>
 			<td>&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${distribution}" type="number"/></td>
 		</tr>

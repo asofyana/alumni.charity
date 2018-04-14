@@ -8,16 +8,16 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">View Contribution</h3>
+              <h3 class="box-title">Sumbangan Wajib</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Month</th>
-                  <th>Amount</th>
-                  <th>Payment Date</th>
+                  <th>Bulan</th>
+                  <th>Jumlah</th>
+                  <th>Tanggal Pembayaran</th>
                 </tr>
                 </thead>
                 <tbody>

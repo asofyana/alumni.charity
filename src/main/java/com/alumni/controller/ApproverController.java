@@ -98,7 +98,7 @@ public class ApproverController extends BaseController {
 			
 			if ("Approve".equals(request.getParameter("btnApprove"))) {
 				requestService.approveRequest(userBean.getUser(), paymentRequest);
-				modelAndView.addObject("message", "The request is approved");
+				modelAndView.addObject("message", "Permintaan sudah disetujui");
 			}
 			
 		} catch (InvalidSessionException e) {

@@ -128,7 +128,7 @@ public class TreasuryController extends BaseController {
 			
 			if ("Verify".equals(submit)) {
 				paymentService.verifyPayment(payment, userBean.getUser());
-				modelAndView.addObject("message", "Payment is verified successfully");
+				modelAndView.addObject("message", "Pembayaran sudah diverifikasi");
 			}
 			
 		} catch (InvalidSessionException e) {
